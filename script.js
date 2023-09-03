@@ -5,11 +5,11 @@ window.onload = () => {
 const COMMANDS = {
   help: 'Supported commands: <span class="code">about</span>, <span class="code">experience</span>, <span class="code">education</span>, <span class="code">skills</span>, <span class="code">acknowledges</span>, <span class="code">contact</span>, <span class="code">resume</span>',
   about:
-    "Hello 👋<br>I'm Haridev P.<br> A 17 years cybersecurity learner currently living in India.",
+    "Hello 👋<br>I'm Haridev P.<br> A 18 years cybersecurity learner currently living in India.",
   skills:
     '<span class="code">Skill:</span> Ethical Hacking, Pen-Testing, coding,..<br>',
   education:
-    "CKG mhss chingapuram, kozhikode, Kerala, India<br> hss ,2nd year ",
+    "Amrita vishwa vidhyapeetham coimbatore -Btech cse ,First year ",
   resume: "<a href='./resume.pdf' class='success link'>resume.pdf</a>",
   experience: "No Experience😥",
   acknowledges:
