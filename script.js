@@ -13,7 +13,7 @@ const COMMANDS = {
   resume: "<a href='./resume.pdf' class='success link'>resume.pdf</a>",
   experience: "No Experience😥",
   acknowledges:
-    "<a href="g.dev/haridevp"> Google developer<a>,<a href='https://www.cloudskillsboost.google/public_profiles/f46d3136-3f2c-452a-bf06-914d0f5854af/badges/5294689' class='success link'>Generative AI  </a>,<a href='https://www.cloudskillsboost.google/public_profiles/f46d3136-3f2c-452a-bf06-914d0f5854af/badges/5294362' class='success link' >Gen AI Level 3<a>, ",
+    "<a href='g.dev/haridevp' class='success link' > Google developer<a>,<a href='https://www.cloudskillsboost.google/public_profiles/f46d3136-3f2c-452a-bf06-914d0f5854af/badges/5294689' class='success link'>Generative AI  </a>,<a href='https://www.cloudskillsboost.google/public_profiles/f46d3136-3f2c-452a-bf06-914d0f5854af/badges/5294362' class='success link' >Gen AI Level 3<a>, ",
   contact:
     "You can contact me on any of following links:<br><a href='https://t.me/Haridevp' class='success link'>Telegram</a>, <a href='https://www.instagram.com/_.haridev__/' class='success link'>Instagram</a>, <a href='https://www.twitter.com/Haridev__P/' class='success link'>Twitter</a>",
 };
