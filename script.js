@@ -10,7 +10,7 @@ const COMMANDS = {
     '<span class="code">Skill:</span> Ethical Hacking, Pen-Testing, coding,..<br>',
   education:
     "Amrita vishwa vidyapeetham coimbatore -Btech cse ,Second year ",
-  resume: "<a href='https://drive.google.com/file/d/1R1xfanMHj8ZPgoHHp4SOBIY8NY4sshHT/view?usp=sharing' class='success link'>resume google drive link</a>",
+  resume: "<a href='https://drive.google.com/file/d/1R1xfanMHj8ZPgoHHp4SOBIY8NY4sshHT/view?usp=sharing' class='success link'>resume.pdf</a>",
   experience: "No Experience😥",
   acknowledges:
     "<a href='https://g.dev/haridevp' class='success link' > Google developer <a>, <a href='https://developers.google.com/profile/badges/community/gdsc/2023/member' class='success link' > 23-24 GDSC Member <a>, <a href='https://www.cloudskillsboost.google/public_profiles/85843ac3-3173-4aa4-85bc-5e02126aa3cb' class='success link' > Google Cloud Skills Boost <a>",
