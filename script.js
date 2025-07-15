@@ -15,8 +15,8 @@ const COMMANDS = {
   acknowledges:
     "<a href='https://g.dev/haridevp' class='success link' > Google developer <a>, <a href='https://developers.google.com/profile/badges/community/gdsc/2023/member' class='success link' > 23-24 GDSC Member <a>, <a href='https://www.cloudskillsboost.google/public_profiles/85843ac3-3173-4aa4-85bc-5e02126aa3cb' class='success link' > Google Cloud Skills Boost <a>",
   contact:
-    "You can contact me on any of following links:<br><a href='https://t.me/Haridevp' class='success link'>Telegram</a>, <a href='https://www.instagram.com/_.haridev__/' class='success link'>Instagram</a>, <a href='https://www.twitter.com/Haridev__P/' class='success link'>Twitter</a>"
-  
+    "You can contact me on any of following links:<br><a href='https://t.me/Haridevp' class='success link'>Telegram</a>, <a href='https://www.instagram.com/_.haridev__/' class='success link'>Instagram</a>, <a href='https://www.twitter.com/Haridev__P/' class='success link'>Twitter</a>",
+  resume: "<a href='https://drive.google.com/file/d/1R1xfanMHj8ZPgoHHp4SOBIY8NY4sshHT/view' class='success link' > resume <a>
 };
 
 const userInput = document.getElementById("userInput");
