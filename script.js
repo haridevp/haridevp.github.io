@@ -25,11 +25,12 @@ const inputfield = document.getElementById("dummyKeyboard");
 inputfield.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     let input = e.target.value.trim();
+    console.log(input.split(","))
     input = input.toLowerCase();
     if (input.length === 0) {
       return;
     }
-    console.log(input.split(","))
+    
     let output;
     output = `<div class="terminal-line"><span class="success">➜</span> <span class="directory">~</span> ${input}</div>`;
     if (!COMMANDS.hasOwnProperty(input)) {
