@@ -24,7 +24,7 @@ const inputfield = document.getElementById("dummyKeyboard");
 
 inputfield.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
-    let input = e.target.value;
+    let input = e.target.value.trim();
     input = input.toLowerCase();
     if (input.length === 0) {
       return;
