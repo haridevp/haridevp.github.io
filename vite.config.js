@@ -6,12 +6,9 @@ export default defineConfig({
   plugins: [react()],
   base: '/',
   build: {
-    rollupOptions: {
-      output: {
-        entryFileNames: `assets/[name].js`,
-        chunkFileNames: `assets/[name].js`,
-        assetFileNames: `assets/[name].[ext]`
-      }
-    }
+    // Let Vite handle file names with hashes for better caching
+    outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: true // Enable source maps for debugging
   }
 })

@@ -1,29 +1,58 @@
-export const BLOG_POSTS = [
-  {
-    id: 1,
-    title: "Breaking the Bank: HTB 'Heist' Writeup",
-    date: "2024-05-12",
-    category: "HackTheBox",
-    difficulty: "Hard",
-    readTime: "15 min",
-    content: '### Executive Summary\n\nThis machine involved a complex chain of vulnerabilities starting with a misconfigured SMB share leading to a Windows support panel exploit.\n\n### Phase 1: Reconnaissance\n\nI started with a standard Nmap scan to identify open ports.\n\n```bash\nnmap -sC -sV -oA scans/initial 10.10.10.x\n```\n\nThe scan revealed port 80 (HTTP) and 445 (SMB) were open. Enumerating SMB shares without credentials proved successful.\n\n### Phase 2: Exploitation\n\nFound a "config.php" backup file on the SMB share containing database credentials.'
-  },
-  {
-    id: 2,
-    title: "CVE-2024-XXXX Analysis: Buffer Overflow",
-    date: "2024-04-28",
-    category: "Research",
-    difficulty: "Critical",
-    readTime: "20 min",
-    content: '### Overview\n\nA detailed look at a stack-based buffer overflow in a popular FTP server utility.\n\n### The Vulnerability\n\nThe vulnerable function `process_user_input()` uses `strcpy` without bounds checking.\n\n```c\nvoid process_user_input(char *input) {\n    char buffer[64];\n    strcpy(buffer, input); // Vulnerable!\n}\n```\n\nBy sending a payload larger than 64 bytes, we overwrite the EIP register.'
-  },
-  {
-    id: 3,
-    title: "Intro to Privilege Escalation on Linux",
-    date: "2024-03-15",
-    category: "Tutorial",
-    difficulty: "Medium",
-    readTime: "10 min",
-    content: 'Content placeholder for Linux PrivEsc tutorial...'
+const parseFrontMatter = (content) => {
+  const pattern = /^---[\r\n]+([\s\S]*?)[\r\n]+---[\r\n]+([\s\S]*)$/;
+  const match = content.match(pattern);
+
+  if (!match) {
+    return {
+      attributes: {},
+      body: content
+    };
   }
-];
+
+  const yamlBlock = match[1];
+  const body = match[2].trim();
+
+  const attributes = {};
+  yamlBlock.split(/[\r\n]+/).forEach(line => {
+    const colonIndex = line.indexOf(':');
+    if (colonIndex !== -1) {
+      const key = line.slice(0, colonIndex).trim();
+      let value = line.slice(colonIndex + 1).trim();
+      
+      // Basic type parsing
+      if (value === 'true') value = true;
+      else if (value === 'false') value = false;
+      else if (!isNaN(Number(value))) value = Number(value);
+      
+      attributes[key] = value;
+    }
+  });
+
+  return { attributes, body };
+};
+
+// Load all markdown files from ../posts
+const markdownFiles = import.meta.glob('../posts/*.md', { eager: true, query: '?raw', import: 'default' });
+
+export const BLOG_POSTS = Object.keys(markdownFiles).map((path) => {
+  try {
+    const content = markdownFiles[path];
+    const { attributes, body } = parseFrontMatter(content);
+    
+    // Ensure required fields exist
+    return {
+      id: attributes.id || Math.random(),
+      title: attributes.title || "Untitled Post",
+      date: attributes.date || new Date().toISOString().split('T')[0],
+      category: attributes.category || "General",
+      difficulty: attributes.difficulty || "Medium",
+      readTime: attributes.readTime || "5 min",
+      content: body
+    };
+  } catch (err) {
+    console.error(`Failed to parse post: ${path}`, err);
+    return null;
+  }
+})
+.filter(post => post !== null) // Filter out failed parses
+.sort((a, b) => b.id - a.id);

@@ -30,7 +30,7 @@ const WindowFrame = ({ title, children, onClose, active, scrollable = true }) =>
         </div>
       </div>
       {/* Window Content */}
-      <div className={`flex-1 relative ${scrollable ? 'overflow-auto custom-scrollbar p-6 pb-32 md:pb-6' : 'overflow-hidden flex flex-col min-h-0'}`}>
+      <div className={`flex-1 relative ${scrollable ? 'overflow-auto custom-scrollbar p-4 md:p-6 pb-32 md:pb-6' : 'overflow-hidden flex flex-col min-h-0'}`}>
         {scrollable && <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 pointer-events-none"></div>}
         {children}
       </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Terminal, Shield, FileText, Award, Mail, Cpu, Globe, ChevronRight, Hash, ExternalLink, Lock, Minimize2, Maximize2, X, Download, Bot, Sparkles, Send, Github, Linkedin, Braces, Cloud, Instagram } from 'lucide-react';
 
+import ReactMarkdown from 'react-markdown';
 // Imports
 import Typewriter from './Typewriter';
 import GlitchText from './GlitchText';
@@ -256,12 +257,12 @@ export default function App() {
         </header>
 
         {/* CONTENT WINDOW */}
-        <div className="flex-1 relative">
+        <div className="flex-1 relative min-h-0">
 
           {/* DASHBOARD VIEW */}
           {activeTab === 'dashboard' && (
             <WindowFrame title="sys_overview.exe" active={true} onClose={() => {}}>
-              <div className="h-full flex flex-col justify-center max-w-4xl mx-auto">
+              <div className="min-h-full flex flex-col justify-center max-w-4xl mx-auto">
                 <div className="mb-8">
                   <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight">
                     <GlitchText text="HELLO, WORLD" />
@@ -396,10 +397,10 @@ export default function App() {
               </div>
 
               {/* Blog Content (Reader) */}
-              <div className={`flex-[2] ${selectedPost ? 'block' : 'hidden md:block'}`}>
+              <div className={`flex-[2] min-w-0 ${selectedPost ? 'block' : 'hidden md:block'}`}>
                 <WindowFrame title={selectedPost ? `reading: ${selectedPost.title}` : "viewer_idle"} active={!!selectedPost} onClose={() => setSelectedPost(null)}>
                   {selectedPost ? (
-                    <article className="max-w-3xl mx-auto font-sans leading-relaxed text-slate-300">
+                    <article className="max-w-3xl mx-auto font-sans leading-relaxed text-slate-300 max-w-full">
                       <div className="flex justify-between items-start mb-4">
                          <button onClick={() => setSelectedPost(null)} className="md:hidden text-xs text-cyan-400 font-mono underline">&lt; BACK_TO_LIST</button>
                          <button 
@@ -424,21 +425,33 @@ export default function App() {
                       )}
 
                       <div className="border-b border-slate-700 pb-6 mb-6">
-                        <h1 className="text-3xl font-bold text-white mb-4">{selectedPost.title}</h1>
+                        <h1 className="text-3xl font-bold text-white mb-4 break-words">{selectedPost.title}</h1>
                         <div className="flex flex-wrap gap-4 text-sm font-mono text-slate-400">
                           <span className="flex items-center"><Hash size={14} className="mr-1"/> {selectedPost.category}</span>
                           <span className="flex items-center text-cyan-400"><Lock size={14} className="mr-1"/> {selectedPost.difficulty}</span>
                         </div>
                       </div>
 
-                      <div className="prose prose-invert prose-code:text-cyan-300 prose-headings:text-cyan-50 prose-headings:font-mono">
-                        {selectedPost.content.split('\n').map((line, i) => {
-                          if (line.trim().startsWith('###')) return <h3 key={i} className="text-xl font-bold text-white mt-8 mb-4 font-mono">{line.replace('###', '')}</h3>;
-                          if (line.trim().startsWith('```')) return null; 
-                          if (line.trim().includes('void process_user_input')) return <CodeBlock key={i} code={`void process_user_input(char *input) {\n    char buffer[64];\n    strcpy(buffer, input); // Vulnerable!\n}`} language="c" />; 
-                          if (line.trim().includes('nmap -sC')) return <CodeBlock key={i} code="nmap -sC -sV -oA scans/initial 10.10.10.x" language="bash" />; 
-                          return <p key={i} className="mb-4">{line}</p>;
-                        })}
+                      <div className="prose prose-invert prose-code:text-cyan-300 prose-headings:text-cyan-50 prose-headings:font-mono max-w-none break-words">
+                        <ReactMarkdown
+                          components={{
+                            code({node, inline, className, children, ...props}) {
+                              const match = /language-(\w+)/.exec(className || '')
+                              return !inline && match ? (
+                                <CodeBlock 
+                                  code={String(children).replace(/\n$/, '')} 
+                                  language={match[1]} 
+                                />
+                              ) : (
+                                <code className={className} {...props}>
+                                  {children}
+                                </code>
+                              )
+                            }
+                          }}
+                        >
+                          {selectedPost.content}
+                        </ReactMarkdown>
                       </div>
                     </article>
                   ) : (

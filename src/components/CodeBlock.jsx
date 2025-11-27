@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CodeBlock = ({ code, language = 'bash' }) => (
-  <div className="my-4 rounded-md overflow-hidden border border-slate-700 bg-[#0d1117]">
+  <div className="my-4 rounded-md overflow-hidden border border-slate-700 bg-[#0d1117] max-w-full">
     <div className="flex items-center justify-between px-3 py-1 bg-slate-800 border-b border-slate-700">
       <span className="text-xs text-slate-400 font-mono">{language}</span>
       <button 
