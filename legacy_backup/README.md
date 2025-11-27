@@ -1,1 +1,1 @@
-wwww.haridevp.tech
+www.haridevp.tech
