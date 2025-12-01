@@ -7,8 +7,6 @@ difficulty: Easy
 readTime: 5 min
 ---
 
-# Advent of Cyber 2025 - Day 1
-
 ## Introduction & Scenario
 
 The event begins in Wareville, where McSkidy has gone missing. The defenses are failing, and we need to investigate a Linux server that processes Christmas wish lists to find traces of what happened.
