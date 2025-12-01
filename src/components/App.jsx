@@ -2,6 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Terminal, Shield, FileText, Award, Mail, Cpu, Globe, ChevronRight, Hash, ExternalLink, Lock, Minimize2, Maximize2, X, Download, Bot, Sparkles, Send, Github, Linkedin, Braces, Cloud, Instagram } from 'lucide-react';
 
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
+import remarkBreaks from 'remark-breaks';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import { remarkAlert } from 'remark-github-blockquote-alert';
+import 'github-markdown-css/github-markdown-dark.css';
+import 'katex/dist/katex.min.css';
 // Imports
 import Typewriter from './Typewriter';
 import GlitchText from './GlitchText';
@@ -432,21 +440,24 @@ export default function App() {
                         </div>
                       </div>
 
-                      <div className="prose prose-invert prose-code:text-cyan-300 prose-headings:text-cyan-50 prose-headings:font-mono max-w-none break-words">
+                      <div className="markdown-body bg-transparent text-slate-300 font-sans leading-relaxed text-base">
                         <ReactMarkdown
+                          remarkPlugins={[remarkGfm, remarkBreaks, remarkAlert, remarkMath]}
+                          rehypePlugins={[rehypeRaw, rehypeKatex]}
                           components={{
-                            code({node, inline, className, children, ...props}) {
-                              const match = /language-(\w+)/.exec(className || '')
-                              return !inline && match ? (
-                                <CodeBlock 
-                                  code={String(children).replace(/\n$/, '')} 
-                                  language={match[1]} 
-                                />
-                              ) : (
-                                <code className={className} {...props}>
-                                  {children}
-                                </code>
-                              )
+                            pre: ({ children }) => {
+                              if (React.isValidElement(children) && children.type === 'code') {
+                                const { className, children: codeChildren } = children.props;
+                                const match = /language-(\w+)/.exec(className || '');
+                                const language = match ? match[1] : 'text';
+                                return (
+                                  <CodeBlock 
+                                    code={String(codeChildren).replace(/\n$/, '')} 
+                                    language={language} 
+                                  />
+                                );
+                              }
+                              return <pre>{children}</pre>;
                             }
                           }}
                         >
