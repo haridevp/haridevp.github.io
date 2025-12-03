@@ -1,6 +1,6 @@
 ---
 id: 3
-title: "AoC 2025 Day 3: Splunk Basics"
+title: AoC 2025 Day 3: Splunk Basics
 date: 2025-12-03
 category: CTF
 difficulty: Easy
