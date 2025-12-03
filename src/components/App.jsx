@@ -581,12 +581,22 @@ export default function App() {
                     <div className="bg-slate-900/50 border border-slate-700 rounded-lg p-4 flex flex-col items-center justify-center hover:border-cyan-500/50 transition-all group overflow-hidden">
                        <h4 className="text-cyan-400 font-mono text-sm mb-4 group-hover:text-cyan-300 transition-colors">TRYHACKME_RANK</h4>
                        <iframe 
-                         src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=3223438"
+                         src={`https://tryhackme.com/api/v2/badges/public-profile?userPublicId=${USER_CONFIG.thmUserPublicId}`}
                          style={{ border: 'none' }}
                          className="w-full h-52 overflow-hidden"
                          title="TryHackMe Stats"
                          scrolling="no"
                        ></iframe>
+                    </div>
+                    <div className="bg-slate-900/50 border border-slate-700 rounded-lg p-4 flex flex-col items-center justify-center hover:border-cyan-500/50 transition-all group">
+                       <h4 className="text-green-400 font-mono text-sm mb-4 group-hover:text-green-300 transition-colors">HACKTHEBOX_PROFILE</h4>
+                       <a href={`https://app.hackthebox.com/users/${USER_CONFIG.htbUserId}`} target="_blank" rel="noreferrer" className="flex justify-center max-w-[280px]">
+                         <img 
+                           src={`https://www.hackthebox.com/badge/image/${USER_CONFIG.htbUserId}`} 
+                           alt="HackTheBox Badge" 
+                           className="w-full h-auto object-contain hover:scale-105 transition-transform duration-300"
+                         />
+                       </a>
                     </div>
                  </div>
               </div>

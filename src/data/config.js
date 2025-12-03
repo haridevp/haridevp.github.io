@@ -8,5 +8,6 @@ export const USER_CONFIG = {
   googleDev: "https://g.dev/haridevp",
   instagram: "https://www.instagram.com/_.haridev__/",
   website: "https://haridevp.tech",
-
+  thmUserPublicId: "1313145",
+  htbUserId: "1734274"
 };
