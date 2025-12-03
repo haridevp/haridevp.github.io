@@ -582,7 +582,7 @@ export default function App() {
                        <h4 className="text-cyan-400 font-mono text-sm mb-4 group-hover:text-cyan-300 transition-colors">TRYHACKME_RANK</h4>
                        <iframe 
                          src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=3223438"
-                         style='border:none;'
+                         style={{ border: 'none' }}
                          className="w-full h-52 overflow-hidden"
                          title="TryHackMe Stats"
                          scrolling="no"
