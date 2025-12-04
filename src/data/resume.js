@@ -5,7 +5,7 @@ export const RESUME_DATA = {
       company: "Amrita Vishwa Vidyapeetham, Coimbatore",
       period: "2023 - Present",
       details: [
-        "Practicing penetration testing on Hack The Box and TryHackMe since Jan 2023.",
+        "Practicing penetration testing on TryHackMe since Jan 2023.",
         "Experience with tools including Nmap, Burp Suite, Hydra, Wireshark, Gobuster.",
         "Focused on Web Security, Linux privilege escalation, and network analysis."
       ]

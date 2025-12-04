@@ -576,7 +576,7 @@ export default function App() {
               
               <div className="mt-8">
                  <h3 className="text-slate-400 font-mono mb-4 border-b border-slate-700 pb-2">LIVE_STATS</h3>
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                 <div className="grid grid-cols-1 gap-6">
                     {/* TryHackMe Badge */}
                     <div className="bg-slate-900/50 border border-slate-700 rounded-lg p-4 flex flex-col items-center justify-center hover:border-cyan-500/50 transition-all group overflow-hidden">
                        <h4 className="text-cyan-400 font-mono text-sm mb-4 group-hover:text-cyan-300 transition-colors">TRYHACKME_RANK</h4>
@@ -587,16 +587,6 @@ export default function App() {
                          title="TryHackMe Stats"
                          scrolling="no"
                        ></iframe>
-                    </div>
-                    <div className="bg-slate-900/50 border border-slate-700 rounded-lg p-4 flex flex-col items-center justify-center hover:border-cyan-500/50 transition-all group">
-                       <h4 className="text-green-400 font-mono text-sm mb-4 group-hover:text-green-300 transition-colors">HACKTHEBOX_PROFILE</h4>
-                       <a href={`https://app.hackthebox.com/users/${USER_CONFIG.htbUserId}`} target="_blank" rel="noreferrer" className="flex justify-center max-w-[280px]">
-                         <img 
-                           src={`https://www.hackthebox.com/badge/image/${USER_CONFIG.htbUserId}`} 
-                           alt="HackTheBox Badge" 
-                           className="w-full h-auto object-contain hover:scale-105 transition-transform duration-300"
-                         />
-                       </a>
                     </div>
                  </div>
               </div>
