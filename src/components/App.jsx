@@ -173,7 +173,7 @@ export default function App() {
   const handleAnalyzePost = async (postContent) => {
     setAnalysisLoading(true);
     setAnalysisResult(null);
-    const systemPrompt = "You are a Senior Threat Intelligence Analyst. Analyze the provided security writeup. Output your response in valid HTML format (no markdown fences, just the inner HTML) with the following structure: A div with class 'mb-4' containing a <h4 class='text-cyan-400 font-bold mb-2'>EXECUTIVE BRIEF</h4> and a <p class='text-slate-300 text-sm'> summary. Then a div containing <h4 class='text-cyan-400 font-bold mb-2'>CRITICAL VULNERABILITY</h4> and a <p class='text-slate-300 text-sm'> explanation. Finally a div with <h4 class='text-green-400 font-bold mb-2'>REMEDIATION STRATEGY</h4> and a <p class='text-slate-300 text-sm'> recommendation.";
+    const systemPrompt = "You are a Cybernetic Analysis System (Model 9). Scan the provided data log. Output in valid HTML: A code-like block <div class='font-mono text-sm'> containing: <div class='text-green-400'>[SCAN_COMPLETE]</div>, followed by <div class='text-slate-300'>TARGET: [Target Name/Machine]</div>, <div class='text-slate-300'>VECTORS: [List attack vectors]</div>, and <div class='text-cyan-400 mt-2'>// SYSTEM_NOTE:</div> followed by a one-sentence technical summary of the hack.";
     
     const prompt = `Analyze this writeup content: ${postContent}`;
     const response = await callGemini(prompt, systemPrompt);
