@@ -7,6 +7,6 @@ export const USER_CONFIG = {
   linkedin: "https://linkedin.com/in/haridevp",
   googleDev: "https://g.dev/haridevp",
   instagram: "https://www.instagram.com/_.haridev__/",
-  website: "https://haridevp.tech",
+  website: "https://haridevp.dev",
   thmUserPublicId: "3223438"
 };
