@@ -385,8 +385,8 @@ export default function App() {
                       >
                         <div className="flex justify-between items-start mb-2">
                           <span className={`text-xs font-mono px-2 py-0.5 rounded ${ 
-                            post.difficulty === 'Critical' ? 'bg-red-500/20 text-red-400' :
-                            post.difficulty === 'Hard' ? 'bg-orange-500/20 text-orange-400' :
+                            post.difficulty === 'Hard' || post.difficulty === 'Critical' ? 'bg-red-500/20 text-red-400' :
+                            post.difficulty === 'Medium' ? 'bg-orange-500/20 text-orange-400' :
                             'bg-green-500/20 text-green-400'
                           }`}>
                             [{post.difficulty.toUpperCase()}]
@@ -437,7 +437,11 @@ export default function App() {
                         <h1 className="text-3xl font-bold text-white mb-4 break-words">{selectedPost.title}</h1>
                         <div className="flex flex-wrap gap-4 text-sm font-mono text-slate-400">
                           <span className="flex items-center"><Hash size={14} className="mr-1"/> {selectedPost.category}</span>
-                          <span className="flex items-center text-cyan-400"><Lock size={14} className="mr-1"/> {selectedPost.difficulty}</span>
+                          <span className={`flex items-center ${
+                            selectedPost.difficulty === 'Hard' || selectedPost.difficulty === 'Critical' ? 'text-red-400' :
+                            selectedPost.difficulty === 'Medium' ? 'text-orange-400' :
+                            'text-green-400'
+                          }`}><Lock size={14} className="mr-1"/> {selectedPost.difficulty}</span>
                         </div>
                       </div>
 
