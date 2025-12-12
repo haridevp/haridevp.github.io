@@ -242,6 +242,7 @@ export default function App() {
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800 z-50 flex justify-around p-3">
         <button onClick={() => setActiveTab('dashboard')} className={activeTab === 'dashboard' ? 'text-cyan-400' : 'text-slate-500'}><Cpu size={24} /></button>
         <button onClick={() => setActiveTab('blog')} className={activeTab === 'blog' ? 'text-cyan-400' : 'text-slate-500'}><FileText size={24} /></button>
+        <button onClick={() => setActiveTab('achievements')} className={activeTab === 'achievements' ? 'text-cyan-400' : 'text-slate-500'}><Award size={24} /></button>
         <button onClick={() => setActiveTab('assistant')} className={activeTab === 'assistant' ? 'text-purple-400' : 'text-slate-500'}><Bot size={24} /></button>
         <button onClick={() => setActiveTab('contact')} className={activeTab === 'contact' ? 'text-cyan-400' : 'text-slate-500'}><Mail size={24} /></button>
       </div>
