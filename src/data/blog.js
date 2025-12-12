@@ -31,6 +31,16 @@ const parseFrontMatter = (content) => {
   return { attributes, body };
 };
 
+const transformObsidianImages = (content) => {
+  // Converts ![[filename.png]] to ![filename.png](/filename.png)
+  return content.replace(/!\[\[(.*?)\]\]/g, (match, filename) => {
+    const cleanFilename = filename.trim();
+    // Encode spaces for the URL, assume root of public folder
+    const url = '/' + cleanFilename.replace(/ /g, '%20');
+    return `![${cleanFilename}](${url})`;
+  });
+};
+
 // Load all markdown files from ../posts
 const markdownFiles = import.meta.glob('../posts/*.md', { eager: true, query: '?raw', import: 'default' });
 
@@ -47,7 +57,7 @@ export const BLOG_POSTS = Object.keys(markdownFiles).map((path) => {
       category: attributes.category || "General",
       difficulty: attributes.difficulty || "Medium",
       readTime: attributes.readTime || "5 min",
-      content: body
+      content: transformObsidianImages(body)
     };
   } catch (err) {
     console.error(`Failed to parse post: ${path}`, err);
