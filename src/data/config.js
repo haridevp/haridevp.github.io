@@ -1,7 +1,7 @@
 export const USER_CONFIG = {
-  username: "Haridev-P",
+  username: "Haridev P",
   hostname: "kali-linux",
-  role: "Security Researcher | Penetration Tester",
+  role: "Security Researcher | Offensive Security Specialist",
   email: "haridevpnarayananivas@gmail.com",
   github: "https://github.com/haridevp",
   linkedin: "https://linkedin.com/in/haridevp",

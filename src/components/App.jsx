@@ -511,14 +511,16 @@ export default function App() {
                      <h3 className="text-cyan-400 font-mono mb-4 border-b border-slate-700 pb-2 flex items-center">
                       <Download size={16} className="mr-2" /> EXPORT
                     </h3>
-                    <button className="w-full py-2 bg-slate-700 hover:bg-slate-600 text-white font-mono text-sm rounded transition-colors flex justify-center items-center">
+                    <a href="/Resume.pdf" download="Haridev_P_Resume.pdf" className="w-full py-2 bg-slate-700 hover:bg-slate-600 text-white font-mono text-sm rounded transition-colors flex justify-center items-center">
                       DOWNLOAD_CV.PDF
-                    </button>
+                    </a>
                   </div>
                 </div>
 
-                {/* Right Column: Experience */}
+                {/* Right Column: Experience & More */}
                 <div className="lg:col-span-2 space-y-8">
+                  
+                  {/* Experience */}
                   <div>
                     <h3 className="text-cyan-400 font-mono mb-6 flex items-center">
                       <Terminal size={16} className="mr-2" /> EXPERIENCE_LOG
@@ -543,6 +545,82 @@ export default function App() {
                       ))}
                     </div>
                   </div>
+
+                  {/* Projects */}
+                  <div>
+                    <h3 className="text-cyan-400 font-mono mb-6 flex items-center">
+                      <Braces size={16} className="mr-2" /> PROJECT_INDEX
+                    </h3>
+                    <div className="relative border-l border-slate-700 ml-3 space-y-8">
+                      {RESUME_DATA.projects?.map((project, idx) => (
+                        <div key={idx} className="pl-8 relative group">
+                          <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 bg-slate-600 rounded-full border border-slate-900 group-hover:bg-purple-400 group-hover:shadow-[0_0_10px_rgba(192,132,252,0.5)] transition-all"></div>
+                          <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
+                            <h4 className="text-xl font-bold text-slate-200">{project.title}</h4>
+                            <span className="font-mono text-xs text-purple-400/80 bg-purple-900/20 px-2 py-1 rounded">{project.period}</span>
+                          </div>
+                          <div className="text-sm font-mono text-slate-400 mb-3">{project.tech}</div>
+                          <ul className="list-disc list-outside ml-4 space-y-1 text-slate-300">
+                             {project.details.map((d, i) => <li key={i}>{d}</li>)}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Education */}
+                  <div>
+                    <h3 className="text-cyan-400 font-mono mb-6 flex items-center">
+                      <FileText size={16} className="mr-2" /> ACADEMIC_RECORDS
+                    </h3>
+                     <div className="space-y-6">
+                      {RESUME_DATA.education?.map((edu, idx) => (
+                        <div key={idx} className="bg-slate-800/30 p-4 rounded border border-slate-700 hover:border-cyan-500/50 transition-colors">
+                          <div className="flex justify-between items-start mb-2">
+                            <h4 className="font-bold text-slate-200">{edu.institution}</h4>
+                            <span className="font-mono text-xs text-slate-500">{edu.period}</span>
+                          </div>
+                          <div className="text-cyan-400 font-mono text-sm mb-2">{edu.degree}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Certifications */}
+                  <div>
+                    <h3 className="text-cyan-400 font-mono mb-6 flex items-center">
+                      <Award size={16} className="mr-2" /> CERTIFICATIONS
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                       {RESUME_DATA.certifications?.map((cert, idx) => (
+                         <div key={idx} className="bg-slate-800/30 p-4 rounded border border-slate-700 hover:border-yellow-500/50 transition-colors">
+                            <h4 className="font-bold text-slate-200 text-sm mb-1">{cert.name}</h4>
+                            <p className="text-xs text-slate-400 font-mono mb-2">{cert.issuer}</p>
+                            <span className="text-xs text-emerald-400 font-mono">{cert.date}</span>
+                         </div>
+                       ))}
+                    </div>
+                  </div>
+
+                   {/* Leadership */}
+                   <div>
+                    <h3 className="text-cyan-400 font-mono mb-6 flex items-center">
+                      <Globe size={16} className="mr-2" /> LEADERSHIP_&_EXTRACURRICULAR
+                    </h3>
+                    <div className="relative border-l border-slate-700 ml-3 space-y-8">
+                       {RESUME_DATA.leadership?.map((item, idx) => (
+                        <div key={idx} className="pl-8 relative group">
+                           <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 bg-slate-600 rounded-full border border-slate-900 group-hover:bg-emerald-400 transition-all"></div>
+                           <h4 className="text-lg font-bold text-slate-200">{item.role}</h4>
+                           <div className="text-sm font-mono text-slate-400 mb-2">{item.organization} | {item.period}</div>
+                           <ul className="list-disc list-outside ml-4 space-y-1 text-slate-300">
+                             {item.details.map((d, i) => <li key={i}>{d}</li>)}
+                           </ul>
+                        </div>
+                       ))}
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </WindowFrame>
