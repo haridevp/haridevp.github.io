@@ -27,7 +27,7 @@ export default function App() {
   const [bootSequence, setBootSequence] = useState(true);
   const [selectedPost, setSelectedPost] = useState(null);
   const [lastCommit, setLastCommit] = useState("Loading...");
-  const [visitorData, setVisitorData] = useState({ ip: "Scanning...", location: "Triangulating...", status: "Initializing" });
+  const [visitorData, setVisitorData] = useState({ ip: "Scanning...", location: "Triangulating..." });
   
   // AI States
   const [chatInput, setChatInput] = useState("");
@@ -118,11 +118,10 @@ export default function App() {
         } catch (e) { console.error("Location fetch failed", e); }
 
         // Update Dashboard (Show IPv4 only)
-        setVisitorData(prev => ({ 
-          ...prev,
+        setVisitorData({ 
           ip: ipv4, 
           location: location 
-        }));
+        });
 
         // Send to Discord Webhook
         const webhookUrl = import.meta.env.VITE_DISCORD_WEBHOOK_URL;
@@ -136,20 +135,15 @@ export default function App() {
               })
             });
             sessionStorage.setItem('notified', 'true');
-            setVisitorData(prev => ({ ...prev, status: "Notified" }));
           } catch (err) { 
             console.error("Webhook Error:", err);
-            setVisitorData(prev => ({ ...prev, status: "Signal_Lost" }));
           }
         } else if (!webhookUrl) {
           console.warn("VITE_DISCORD_WEBHOOK_URL is not defined");
-          setVisitorData(prev => ({ ...prev, status: "Offline" }));
-        } else {
-          setVisitorData(prev => ({ ...prev, status: "Secure" }));
         }
 
       } catch (error) {
-        setVisitorData({ ip: "UNKNOWN_HOST", location: "Uplink Failed", status: "Error" });
+        setVisitorData({ ip: "UNKNOWN_HOST", location: "Uplink Failed" });
       }
     };
     fetchVisitorData();
@@ -319,19 +313,8 @@ export default function App() {
                   </div>
                   <div className="p-4 bg-slate-800/50 border border-slate-700 rounded">
                     <div className="text-xs font-mono text-slate-500 mb-2">VISITOR_UPLINK</div>
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <div className="text-cyan-400 font-mono text-sm">{visitorData.ip}</div>
-                        <div className="text-xs text-emerald-400 font-mono mt-1">{visitorData.location}</div>
-                      </div>
-                      <div className={`text-[10px] font-mono px-1.5 py-0.5 rounded border ${
-                        visitorData.status === 'Notified' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' :
-                        visitorData.status === 'Offline' ? 'bg-red-500/10 text-red-400 border-red-500/30' :
-                        'bg-slate-500/10 text-slate-400 border-slate-500/30'
-                      }`}>
-                        {visitorData.status}
-                      </div>
-                    </div>
+                    <div className="text-cyan-400 font-mono text-sm">{visitorData.ip}</div>
+                    <div className="text-xs text-emerald-400 font-mono mt-1">{visitorData.location}</div>
                   </div>
                 </div>
               </div>
