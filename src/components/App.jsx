@@ -27,7 +27,7 @@ export default function App() {
   const [bootSequence, setBootSequence] = useState(true);
   const [selectedPost, setSelectedPost] = useState(null);
   const [lastCommit, setLastCommit] = useState("Loading...");
-  const [visitorData, setVisitorData] = useState({ ip: "Scanning...", location: "Triangulating..." });
+  const [visitorData, setVisitorData] = useState({ ip: "Scanning...", location: "Triangulating...", status: "Initializing" });
   
   // AI States
   const [chatInput, setChatInput] = useState("");
@@ -118,10 +118,11 @@ export default function App() {
         } catch (e) { console.error("Location fetch failed", e); }
 
         // Update Dashboard (Show IPv4 only)
-        setVisitorData({ 
+        setVisitorData(prev => ({ 
+          ...prev,
           ip: ipv4, 
           location: location 
-        });
+        }));
 
         // Send to Discord Webhook
         const webhookUrl = import.meta.env.VITE_DISCORD_WEBHOOK_URL;
@@ -135,13 +136,20 @@ export default function App() {
               })
             });
             sessionStorage.setItem('notified', 'true');
+            setVisitorData(prev => ({ ...prev, status: "Notified" }));
           } catch (err) { 
             console.error("Webhook Error:", err);
+            setVisitorData(prev => ({ ...prev, status: "Signal_Lost" }));
           }
+        } else if (!webhookUrl) {
+          console.warn("VITE_DISCORD_WEBHOOK_URL is not defined");
+          setVisitorData(prev => ({ ...prev, status: "Offline" }));
+        } else {
+          setVisitorData(prev => ({ ...prev, status: "Secure" }));
         }
 
       } catch (error) {
-        setVisitorData({ ip: "UNKNOWN_HOST", location: "Uplink Failed" });
+        setVisitorData({ ip: "UNKNOWN_HOST", location: "Uplink Failed", status: "Error" });
       }
     };
     fetchVisitorData();
@@ -242,6 +250,7 @@ export default function App() {
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800 z-50 flex justify-around p-3">
         <button onClick={() => setActiveTab('dashboard')} className={activeTab === 'dashboard' ? 'text-cyan-400' : 'text-slate-500'}><Cpu size={24} /></button>
         <button onClick={() => setActiveTab('blog')} className={activeTab === 'blog' ? 'text-cyan-400' : 'text-slate-500'}><FileText size={24} /></button>
+        <button onClick={() => setActiveTab('resume')} className={activeTab === 'resume' ? 'text-cyan-400' : 'text-slate-500'}><Terminal size={24} /></button>
         <button onClick={() => setActiveTab('achievements')} className={activeTab === 'achievements' ? 'text-cyan-400' : 'text-slate-500'}><Award size={24} /></button>
         <button onClick={() => setActiveTab('assistant')} className={activeTab === 'assistant' ? 'text-purple-400' : 'text-slate-500'}><Bot size={24} /></button>
         <button onClick={() => setActiveTab('contact')} className={activeTab === 'contact' ? 'text-cyan-400' : 'text-slate-500'}><Mail size={24} /></button>
@@ -271,12 +280,12 @@ export default function App() {
           {/* DASHBOARD VIEW */}
           {activeTab === 'dashboard' && (
             <WindowFrame title="sys_overview.exe" active={true} onClose={() => {}}>
-              <div className="min-h-full flex flex-col justify-center max-w-4xl mx-auto">
+              <div className="min-h-full flex flex-col justify-center max-w-4xl mx-auto pb-20 md:pb-0">
                 <div className="mb-8">
                   <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight">
                     <GlitchText text="HELLO, WORLD" />
                   </h1>
-                  <div className="text-xl text-cyan-400 font-mono mb-6 h-8">
+                  <div className="text-xl text-cyan-400 font-mono mb-6 min-h-[2rem]">
                     <Typewriter text={`> ${USER_CONFIG.role}`} />
                   </div>
                   <p className="text-slate-400 max-w-lg leading-relaxed mb-8 border-l-2 border-slate-700 pl-4">
@@ -310,8 +319,19 @@ export default function App() {
                   </div>
                   <div className="p-4 bg-slate-800/50 border border-slate-700 rounded">
                     <div className="text-xs font-mono text-slate-500 mb-2">VISITOR_UPLINK</div>
-                    <div className="text-cyan-400 font-mono text-sm">{visitorData.ip}</div>
-                    <div className="text-xs text-emerald-400 font-mono mt-1">{visitorData.location}</div>
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <div className="text-cyan-400 font-mono text-sm">{visitorData.ip}</div>
+                        <div className="text-xs text-emerald-400 font-mono mt-1">{visitorData.location}</div>
+                      </div>
+                      <div className={`text-[10px] font-mono px-1.5 py-0.5 rounded border ${
+                        visitorData.status === 'Notified' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' :
+                        visitorData.status === 'Offline' ? 'bg-red-500/10 text-red-400 border-red-500/30' :
+                        'bg-slate-500/10 text-slate-400 border-slate-500/30'
+                      }`}>
+                        {visitorData.status}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
