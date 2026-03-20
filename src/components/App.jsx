@@ -624,7 +624,7 @@ export default function App() {
                       <Download size={16} className="mr-2" /> EXPORT
                     </h3>
                     <a href="/Resume.pdf" download="Haridev_P_Resume.pdf" className="w-full py-2 bg-slate-700 hover:bg-slate-600 text-white font-mono text-sm rounded transition-colors flex justify-center items-center">
-                      DOWNLOAD_CV.PDF
+                      RESUME.PDF
                     </a>
                   </div>
                 </div>
