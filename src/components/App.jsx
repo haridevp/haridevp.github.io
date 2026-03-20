@@ -1,5 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Terminal, Shield, FileText, Award, Mail, Cpu, Globe, ChevronRight, Hash, ExternalLink, Lock, Minimize2, Maximize2, X, Download, Bot, Sparkles, Send, Github, Linkedin, Braces, Cloud, Instagram } from 'lucide-react';
+import { 
+  Terminal, Shield, Cpu, Code, Database, Globe, Lock, Unlock,
+  Wifi, Search, User, Mail, Github, Linkedin, AlertTriangle, FileText, 
+  Send, Maximize2, Minimize2, CheckCircle, Crosshair, Map, Clock, 
+  Bot, RefreshCw, Layers, Server, Activity, ArrowRight, Zap, Target, BookOpen,
+  Eye, Download, Building, Braces, Briefcase, Award, Hash, Star, Cloud,
+  ExternalLink, Instagram, X, ChevronRight, Sparkles
+} from 'lucide-react';
 
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -32,6 +39,7 @@ export default function App() {
   const [bootSequence, setBootSequence] = useState(true);
   const [bootFading, setBootFading] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
   const [lastCommit, setLastCommit] = useState("Loading...");
   const [visitorData, setVisitorData] = useState({ ip: "Scanning...", location: "Triangulating..." });
   
@@ -455,10 +463,29 @@ export default function App() {
           {activeTab === 'blog' && (
             <div className="h-full flex gap-4">
               {/* Blog List (Sidebar style) */}
-              <div className={`flex-1 md:max-w-md ${selectedPost ? 'hidden md:block' : 'block'}`}>
+              <div className={`flex-1 md:max-w-md flex flex-col min-h-0 ${selectedPost ? 'hidden md:flex' : 'flex'}`}>
                 <WindowFrame title="mission_logs.db" active={true} onClose={() => {}} scrollable={false}>
-                  <div className="space-y-2 h-full overflow-auto custom-scrollbar p-4 pb-20 min-h-0">
-                    {BLOG_POSTS.map(post => (
+                  <div className="p-4 border-b border-slate-800 bg-slate-900/50 flex-none z-10">
+                    <div className="relative">
+                      <Search size={14} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500" />
+                      <input
+                        type="text"
+                        placeholder="SEARCH_LOGS..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full bg-slate-800/50 border border-slate-700 text-slate-300 pl-9 pr-3 py-2 rounded focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500/50 transition-all font-mono text-xs uppercase"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2 flex-grow overflow-auto custom-scrollbar p-4 min-h-0">
+                    {BLOG_POSTS
+                      .filter(post => 
+                        post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                        post.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        post.content.toLowerCase().includes(searchQuery.toLowerCase())
+                      )
+                      .map(post => (
                       <div 
                         key={post.id} 
                         onClick={() => { setSelectedPost(post); setAnalysisResult(null); }}
@@ -641,8 +668,20 @@ export default function App() {
                         <div key={idx} className="pl-8 relative group">
                           <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 bg-slate-600 rounded-full border border-slate-900 group-hover:bg-purple-400 group-hover:shadow-[0_0_10px_rgba(192,132,252,0.5)] transition-all"></div>
                           <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                            <h4 className="text-xl font-bold text-slate-200">{project.title}</h4>
-                            <span className="font-mono text-xs text-purple-400/80 bg-purple-900/20 px-2 py-1 rounded">{project.period}</span>
+                            {project.link ? (
+                              <a 
+                                href={project.link} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="text-xl font-bold text-slate-200 hover:text-cyan-400 transition-colors flex items-center group/link"
+                              >
+                                {project.title}
+                                <ExternalLink size={14} className="ml-2 opacity-50 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all" />
+                              </a>
+                            ) : (
+                              <h4 className="text-xl font-bold text-slate-200">{project.title}</h4>
+                            )}
+                            <span className="font-mono text-xs text-purple-400/80 bg-purple-900/20 px-2 py-1 rounded sm:ml-4 mt-2 sm:mt-0 self-start sm:self-auto shrink-0">{project.period}</span>
                           </div>
                           <div className="text-sm font-mono text-slate-400 mb-3">{project.tech}</div>
                           <ul className="list-disc list-outside ml-4 space-y-1 text-slate-300">

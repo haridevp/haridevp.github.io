@@ -39,6 +39,7 @@ export const RESUME_DATA = {
       title: "Stealth C2 Framework (Red Team Research)",
       tech: "Python, Discord API",
       period: "Nov 2025 - Present",
+      link: "https://github.com/haridevp/Stealth-C2-Framework",
       details: [
         "Engineered a modular adversary emulation framework to test network Intrusion Detection Systems (NIDS).",
         "Implemented AES-256 encrypted channels over Discord API to simulate data exfiltration and test DLP solutions.",
@@ -49,6 +50,7 @@ export const RESUME_DATA = {
       title: "Enterprise Active Directory Attack Lab",
       tech: "Windows Server 2022, PowerShell",
       period: "Nov 2025 - Dec 2025",
+      link: "https://github.com/haridevp/Enterprise-AD-Attack-Lab",
       details: [
         "Architected a virtualized corporate environment with a Domain Controller, User Workstations, and segmented networks.",
         "Simulated real-world attack vectors including LLMNR Poisoning, Kerberoasting, and SMB Relay.",
@@ -59,6 +61,7 @@ export const RESUME_DATA = {
       title: "SentiVest (IoT Fall Detection System)",
       tech: "C++, Arduino, MPU6050",
       period: "Aug 2025 - Oct 2025",
+      link: "https://github.com/haridevp/SentiVest",
       details: [
         "Developed a wearable vest integrating an MPU6050 gyroscope and pulse sensor for real-time elderly monitoring.",
         "Programmed an algorithm to distinguish between normal movement and sudden falls with high accuracy.",
