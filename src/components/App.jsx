@@ -632,6 +632,15 @@ export default function App() {
                 {/* Right Column: Experience & More */}
                 <div className="lg:col-span-2 space-y-8">
                   
+                  {/* Summary */}
+                  {RESUME_DATA.summary && (
+                    <div className="bg-slate-800/30 p-4 rounded border border-slate-700 mb-8 border-l-4 border-l-cyan-500">
+                      <p className="text-slate-300 font-sans leading-relaxed text-sm">
+                        {RESUME_DATA.summary}
+                      </p>
+                    </div>
+                  )}
+
                   {/* Experience */}
                   {RESUME_DATA.experience && RESUME_DATA.experience.length > 0 && (
                     <div>
@@ -728,24 +737,26 @@ export default function App() {
                     </div>
                   </div>
 
-                   {/* Leadership */}
-                   <div>
-                    <h3 className="text-cyan-400 font-mono mb-6 flex items-center">
-                      <Globe size={16} className="mr-2" /> LEADERSHIP_&_EXTRACURRICULAR
-                    </h3>
-                    <div className="relative border-l border-slate-700 ml-3 space-y-8">
-                       {RESUME_DATA.leadership?.map((item, idx) => (
-                        <div key={idx} className="pl-8 relative group">
-                           <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 bg-slate-600 rounded-full border border-slate-900 group-hover:bg-emerald-400 transition-all"></div>
-                           <h4 className="text-lg font-bold text-slate-200">{item.role}</h4>
-                           <div className="text-sm font-mono text-slate-400 mb-2">{item.organization} | {item.period}</div>
-                           <ul className="list-disc list-outside ml-4 space-y-1 text-slate-300">
-                             {item.details.map((d, i) => <li key={i}>{d}</li>)}
-                           </ul>
-                        </div>
-                       ))}
+                  {/* Publications */}
+                  {RESUME_DATA.publications && RESUME_DATA.publications.length > 0 && (
+                    <div>
+                      <h3 className="text-cyan-400 font-mono mb-6 flex items-center">
+                        <BookOpen size={16} className="mr-2" /> RESEARCH_&_PUBLICATIONS
+                      </h3>
+                      <div className="relative border-l border-slate-700 ml-3 space-y-8">
+                        {RESUME_DATA.publications.map((pub, idx) => (
+                          <div key={idx} className="pl-8 relative group">
+                            <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 bg-slate-600 rounded-full border border-slate-900 group-hover:bg-blue-400 group-hover:shadow-[0_0_10px_rgba(96,165,250,0.5)] transition-all"></div>
+                            <h4 className="text-lg font-bold text-slate-200">{pub.title}</h4>
+                            <div className="text-sm font-mono text-cyan-400/80 mb-2">{pub.publisher}</div>
+                            <ul className="list-disc list-outside ml-4 space-y-1 text-slate-300">
+                              {pub.details.map((d, i) => <li key={i}>{d}</li>)}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
 
                 </div>
               </div>
