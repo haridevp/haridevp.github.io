@@ -679,19 +679,32 @@ export default function App() {
                         <div key={idx} className="pl-8 relative group">
                           <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 bg-slate-600 rounded-full border border-slate-900 group-hover:bg-purple-400 group-hover:shadow-[0_0_10px_rgba(192,132,252,0.5)] transition-all"></div>
                           <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                            {project.link ? (
-                              <a 
-                                href={project.link} 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                className="text-xl font-bold text-slate-200 hover:text-cyan-400 transition-colors flex items-center group/link"
-                              >
-                                {project.title}
-                                <ExternalLink size={14} className="ml-2 opacity-50 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all" />
-                              </a>
-                            ) : (
-                              <h4 className="text-xl font-bold text-slate-200">{project.title}</h4>
-                            )}
+                            <div className="flex items-center gap-3">
+                              {project.link ? (
+                                <a 
+                                  href={project.link} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer" 
+                                  className="text-xl font-bold text-slate-200 hover:text-cyan-400 transition-colors flex items-center group/link"
+                                >
+                                  {project.title}
+                                  <ExternalLink size={14} className="ml-2 opacity-50 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all" />
+                                </a>
+                              ) : (
+                                <h4 className="text-xl font-bold text-slate-200">{project.title}</h4>
+                              )}
+                              {project.liveLink && (
+                                <a
+                                  href={project.liveLink}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  title="Live Demo"
+                                  className="text-slate-400 hover:text-emerald-400 transition-colors opacity-70 hover:opacity-100 flex items-center"
+                                >
+                                  <Globe size={16} />
+                                </a>
+                              )}
+                            </div>
                             <span className="font-mono text-xs text-purple-400/80 bg-purple-900/20 px-2 py-1 rounded sm:ml-4 mt-2 sm:mt-0 self-start sm:self-auto shrink-0">{project.period}</span>
                           </div>
                           <div className="text-sm font-mono text-slate-400 mb-3">{project.tech}</div>

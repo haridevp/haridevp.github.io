@@ -1,5 +1,5 @@
 export const RESUME_DATA = {
-  summary: "Offensive-security focused Computer Science student with hands-on experience in penetration testing, Active Directory exploitation, and red team operations. Passionate about adversary simulation, vulnerability research, and building security tooling across web, network, and infrastructure attack surfaces.",
+  summary: null,
   contact: {
     phone: "7012705946",
     email: "haridevpnarayananivas@gmail.com",
@@ -27,7 +27,7 @@ export const RESUME_DATA = {
       title: "Stealth C2 Framework",
       tech: "Python, Discord API, AES-256",
       period: "Nov 2025 - Jan 2026",
-      link: "https://github.com/haridevp/Stealth-C2-Framework",
+      link: "https://github.com/haridevp/Stealth-C2",
       details: [
         "Developed a modular C2 framework using AES-256-GCM encrypted communication tunnelled over legitimate Discord API traffic to bypass firewall restrictions.",
         "Implemented emoji-based steganographic protocols to disguise C2 commands as innocuous chat messages, reducing traffic anomaly signatures.",
@@ -59,7 +59,8 @@ export const RESUME_DATA = {
       title: "Alumni Connect",
       tech: "Node.js, MongoDB, Web Crypto API",
       period: "Jan 2026 - Feb 2026",
-      link: "https://github.com/haridevp/Alumni-Connect",
+      link: "https://github.com/haridevp/Alumini_Connect",
+      liveLink: "https://haridevp.dev/Alumini_Connect/",
       details: [
         "Built a role-based networking platform implementing AES-256-GCM encryption via the Web Crypto API — server stores only ciphertext and IV.",
         "Implemented NIST SP 800-63-2 compliant authentication with SHA-256 salted hashing and MFA (Email OTP), achieving Level of Assurance 2.",
