@@ -1,5 +1,33 @@
 @import "tailwindcss";
 
+/* =========================================
+   GLOBAL FONT & BASE
+   ========================================= */
+:root {
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --cyan-glow: rgba(6, 182, 212, 0.4);
+  --purple-glow: rgba(168, 85, 247, 0.4);
+}
+
+html, body, #root {
+  background-color: #000;
+}
+
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Override Tailwind font-mono to use JetBrains Mono */
+.font-mono {
+  font-family: var(--font-mono) !important;
+}
+
+/* =========================================
+   CUSTOM SCROLLBAR
+   ========================================= */
 @layer utilities {
   .custom-scrollbar::-webkit-scrollbar {
     width: 6px;
@@ -21,16 +49,224 @@
 }
 
 /* =========================================
+   KEYFRAME ANIMATIONS
+   ========================================= */
+
+/* Staggered fade-in for boot lines */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide in from left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale fade in */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* CSS Glitch effect */
+@keyframes glitch-skew {
+  0% { transform: skew(0deg); }
+  20% { transform: skew(-2deg); }
+  40% { transform: skew(1.5deg); }
+  60% { transform: skew(-0.5deg); }
+  80% { transform: skew(0.8deg); }
+  100% { transform: skew(0deg); }
+}
+
+@keyframes glitch-top {
+  0%, 100% { clip-path: inset(0 0 90% 0); transform: translate(0); }
+  20% { clip-path: inset(20% 0 50% 0); transform: translate(-4px, -2px); }
+  40% { clip-path: inset(60% 0 10% 0); transform: translate(4px, 2px); }
+  60% { clip-path: inset(30% 0 40% 0); transform: translate(-2px, 1px); }
+  80% { clip-path: inset(70% 0 5% 0); transform: translate(3px, -1px); }
+}
+
+@keyframes glitch-bottom {
+  0%, 100% { clip-path: inset(90% 0 0 0); transform: translate(0); }
+  20% { clip-path: inset(50% 0 20% 0); transform: translate(4px, 2px); }
+  40% { clip-path: inset(10% 0 60% 0); transform: translate(-3px, -1px); }
+  60% { clip-path: inset(40% 0 30% 0); transform: translate(2px, -2px); }
+  80% { clip-path: inset(5% 0 70% 0); transform: translate(-4px, 1px); }
+}
+
+/* Floating / breathing animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Progress bar fill */
+@keyframes progressFill {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+/* Pulse glow */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 5px var(--cyan-glow), 0 0 10px var(--cyan-glow); }
+  50% { box-shadow: 0 0 15px var(--cyan-glow), 0 0 30px var(--cyan-glow); }
+}
+
+/* Grid background pulse */
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.03; }
+  50% { opacity: 0.06; }
+}
+
+/* Cursor blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Skill bar fill */
+@keyframes skillFill {
+  from { width: 0%; }
+  to { width: var(--skill-level, 80%); }
+}
+
+/* Stagger delay utilities */
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out both;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.4s ease-out both;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.4s ease-out both;
+}
+
+/* Page transition wrapper */
+.page-transition {
+  animation: fadeInUp 0.35s ease-out;
+}
+
+/* Animated background grid */
+.animated-grid-bg {
+  background-image: 
+    linear-gradient(rgba(6, 182, 212, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridPulse 4s ease-in-out infinite;
+}
+
+/* =========================================
+   GLITCH TEXT COMPONENT STYLES
+   ========================================= */
+.glitch-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-wrapper .glitch-text {
+  position: relative;
+}
+
+.glitch-wrapper .glitch-copy {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.glitch-wrapper:hover .glitch-copy,
+.glitch-wrapper.glitch-active .glitch-copy {
+  opacity: 0.8;
+}
+
+.glitch-wrapper:hover .glitch-copy.glitch-top,
+.glitch-wrapper.glitch-active .glitch-copy.glitch-top {
+  color: #ef4444;
+  animation: glitch-top 0.3s ease-in-out;
+}
+
+.glitch-wrapper:hover .glitch-copy.glitch-bottom,
+.glitch-wrapper.glitch-active .glitch-copy.glitch-bottom {
+  color: #3b82f6;
+  animation: glitch-bottom 0.3s ease-in-out;
+}
+
+.glitch-wrapper:hover .glitch-text,
+.glitch-wrapper.glitch-active .glitch-text {
+  animation: glitch-skew 0.3s ease-in-out;
+}
+
+/* =========================================
+   TRAFFIC LIGHT DOTS (WindowFrame)
+   ========================================= */
+.traffic-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.traffic-dot svg {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.traffic-dot:hover svg {
+  opacity: 1;
+}
+
+.traffic-dot.dot-close {
+  background: #ef4444;
+}
+
+.traffic-dot.dot-minimize {
+  background: #eab308;
+}
+
+.traffic-dot.dot-maximize {
+  background: #22c55e;
+}
+
+/* =========================================
    OBSIDIAN / GITHUB MARKDOWN OVERRIDES
    ========================================= */
 
 /* Base Body Transparency & Font */
 .markdown-body {
   background-color: transparent !important;
-  font-family: inherit !important;
+  font-family: var(--font-body) !important;
   font-size: 1rem !important;
   line-height: 1.7 !important;
-  color: #cbd5e1 !important; /* slate-300 */
+  color: #cbd5e1 !important;
 }
 
 /* Headings */
@@ -40,8 +276,8 @@
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
-  color: #e2e8f0 !important; /* slate-200 */
-  border-bottom: 1px solid #334155 !important; /* slate-700 */
+  color: #e2e8f0 !important;
+  border-bottom: 1px solid #334155 !important;
   padding-bottom: 0.3em !important;
   margin-top: 1.5em !important;
   margin-bottom: 1em !important;
@@ -53,7 +289,7 @@
 
 /* Links */
 .markdown-body a {
-  color: #22d3ee !important; /* cyan-400 */
+  color: #22d3ee !important;
   text-decoration: none !important;
 }
 .markdown-body a:hover {
@@ -62,11 +298,12 @@
 
 /* Inline Code */
 .markdown-body code {
-  color: #fca5a5 !important; /* red-300 (Obsidian default is reddish for inline) */
-  background-color: rgba(30, 41, 59, 0.5) !important; /* slate-800/50 */
+  color: #fca5a5 !important;
+  background-color: rgba(30, 41, 59, 0.5) !important;
   border-radius: 4px !important;
   padding: 0.2em 0.4em !important;
   font-size: 85% !important;
+  font-family: var(--font-mono) !important;
 }
 
 /* Lists */
@@ -100,14 +337,14 @@
 .markdown-body input[type="checkbox"] {
   margin-right: 0.5em !important;
   margin-top: 0.3em !important;
-  accent-color: #22d3ee !important; /* cyan-400 */
+  accent-color: #22d3ee !important;
 }
 
 /* Blockquotes */
 .markdown-body blockquote {
-  border-left: 4px solid #a855f7 !important; /* purple-500 (Obsidian accent) */
-  color: #94a3b8 !important; /* slate-400 */
-  background-color: rgba(30, 41, 59, 0.3) !important; /* slate-800/30 */
+  border-left: 4px solid #a855f7 !important;
+  color: #94a3b8 !important;
+  background-color: rgba(30, 41, 59, 0.3) !important;
   padding: 0.5em 1em !important;
   margin-left: 0 !important;
   margin-right: 0 !important;
@@ -130,7 +367,7 @@
   padding: 10px 16px !important;
 }
 .markdown-body th {
-  background-color: #1e293b !important; /* slate-800 */
+  background-color: #1e293b !important;
   font-weight: 600 !important;
 }
 .markdown-body tr {
@@ -143,7 +380,7 @@
 /* Horizontal Rule */
 .markdown-body hr {
   height: 2px !important;
-  background-color: #334155 !important; /* slate-700 */
+  background-color: #334155 !important;
   border: none !important;
   margin: 2em 0 !important;
 }
@@ -160,7 +397,7 @@
 /* Math (KaTeX) Fixes */
 .katex {
   font-size: 1.1em !important;
-  color: #e2e8f0 !important; /* slate-200 */
+  color: #e2e8f0 !important;
 }
 
 /* Callouts / Alerts (Obsidian Style) */
@@ -169,7 +406,7 @@
   margin-bottom: 1rem !important;
   border-left: 4px solid !important;
   border-radius: 4px !important;
-  background-color: rgba(15, 23, 42, 0.4) !important; /* slate-900/40 */
+  background-color: rgba(15, 23, 42, 0.4) !important;
 }
 .markdown-alert-title {
   display: flex !important;
@@ -177,19 +414,19 @@
   font-weight: 600 !important;
   margin-bottom: 0.5rem !important;
 }
-.markdown-alert-note { border-left-color: #3b82f6 !important; } /* blue-500 */
+.markdown-alert-note { border-left-color: #3b82f6 !important; }
 .markdown-alert-title-note { color: #60a5fa !important; }
 
-.markdown-alert-tip { border-left-color: #22c55e !important; } /* green-500 */
+.markdown-alert-tip { border-left-color: #22c55e !important; }
 .markdown-alert-title-tip { color: #4ade80 !important; }
 
-.markdown-alert-important { border-left-color: #a855f7 !important; } /* purple-500 */
+.markdown-alert-important { border-left-color: #a855f7 !important; }
 .markdown-alert-title-important { color: #c084fc !important; }
 
-.markdown-alert-warning { border-left-color: #eab308 !important; } /* yellow-500 */
+.markdown-alert-warning { border-left-color: #eab308 !important; }
 .markdown-alert-title-warning { color: #facc15 !important; }
 
-.markdown-alert-caution { border-left-color: #ef4444 !important; } /* red-500 */
+.markdown-alert-caution { border-left-color: #ef4444 !important; }
 .markdown-alert-title-caution { color: #f87171 !important; }
 
 /* Code Blocks - Reset for Custom Component */

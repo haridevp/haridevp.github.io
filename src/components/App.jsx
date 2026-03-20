@@ -16,6 +16,10 @@ import GlitchText from './GlitchText';
 import WindowFrame from './WindowFrame';
 import NavItem from './NavItem';
 import CodeBlock from './CodeBlock';
+// AdminPage is lazy-loaded and only available in dev mode
+const AdminPage = import.meta.env.DEV
+  ? React.lazy(() => import('./AdminPage'))
+  : null;
 import { callGemini } from '../scripts/api';
 import { USER_CONFIG } from '../data/config';
 import { RESUME_DATA } from '../data/resume';
@@ -24,7 +28,9 @@ import { TROPHIES } from '../data/trophies';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [prevTab, setPrevTab] = useState('dashboard');
   const [bootSequence, setBootSequence] = useState(true);
+  const [bootFading, setBootFading] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
   const [lastCommit, setLastCommit] = useState("Loading...");
   const [visitorData, setVisitorData] = useState({ ip: "Scanning...", location: "Triangulating..." });
@@ -37,6 +43,13 @@ export default function App() {
   const [isAiThinking, setIsAiThinking] = useState(false);
   const [analysisLoading, setAnalysisLoading] = useState(false);
   const [analysisResult, setAnalysisResult] = useState(null);
+
+  // Handle tab switches with transition
+  const handleTabSwitch = (newTab) => {
+    if (newTab === activeTab) return;
+    setPrevTab(activeTab);
+    setActiveTab(newTab);
+  };
 
   const chatEndRef = useRef(null);
 
@@ -63,9 +76,23 @@ export default function App() {
     return Math.floor(seconds) + " seconds ago";
   };
 
+  // Secret admin access via Ctrl+Shift+A (dev mode only)
   useEffect(() => {
-    // Simulate boot sequence
-    const timer = setTimeout(() => setBootSequence(false), 2500);
+    if (!import.meta.env.DEV) return;
+    const handleKeyDown = (e) => {
+      if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+        e.preventDefault();
+        handleTabSwitch('admin');
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeTab]);
+
+  useEffect(() => {
+    // Smooth boot sequence: staggered lines → progress → fade out
+    const t1 = setTimeout(() => setBootFading(true), 2600);
+    const t2 = setTimeout(() => setBootSequence(false), 3200);
     
     // Fetch Github Last Commit
     const fetchLastCommit = async () => {
@@ -148,7 +175,7 @@ export default function App() {
     };
     fetchVisitorData();
 
-    return () => clearTimeout(timer);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
   useEffect(() => {
@@ -184,17 +211,51 @@ export default function App() {
     setAnalysisLoading(false);
   };
 
+  const bootLines = [
+    { text: 'Initializing kernel...', color: 'text-green-500' },
+    { text: '[ OK ] Mounted root file system.', color: 'text-green-500' },
+    { text: '[ OK ] Started Network Manager.', color: 'text-green-500' },
+    { text: '[ OK ] Reached target Graphical Interface.', color: 'text-green-500' },
+    { text: '[ OK ] Initializing Neural Uplink...', color: 'text-green-500' },
+    { text: '[ OK ] Loading threat intelligence database...', color: 'text-green-500' },
+    { text: `Loading ${USER_CONFIG.username} profile interface...`, color: 'text-cyan-400' },
+  ];
+
   if (bootSequence) {
     return (
-      <div className="h-screen w-screen bg-black text-green-500 font-mono p-10 flex flex-col justify-end text-sm leading-tight overflow-hidden">
-        <div className="space-y-1">
-          <p>Initializing kernel...</p>
-          <p>[ OK ] Mounted root file system.</p>
-          <p>[ OK ] Started Network Manager.</p>
-          <p>[ OK ] Reached target Graphical Interface.</p>
-          <p>[ OK ] Initializing Neural Uplink...</p>
-          <p className="text-cyan-400 animate-pulse">Loading {USER_CONFIG.username} profile interface...</p>
+      <div className={`h-screen w-screen bg-black text-green-500 font-mono p-10 flex flex-col justify-between text-sm leading-tight overflow-hidden relative transition-opacity duration-500 ${bootFading ? 'opacity-0' : 'opacity-100'}`}>
+        {/* Boot lines with staggered animation */}
+        <div className="flex-1 flex flex-col justify-end mb-8">
+          <div className="space-y-1.5">
+            {bootLines.map((line, idx) => (
+              <p
+                key={idx}
+                className={`${line.color} ${idx === bootLines.length - 1 ? 'animate-pulse' : ''}`}
+                style={{
+                  animation: `fadeInUp 0.4s ease-out ${idx * 0.22}s both`,
+                  opacity: 0,
+                }}
+              >
+                {line.text}
+              </p>
+            ))}
+          </div>
         </div>
+
+        {/* Progress bar — always visible once lines start appearing */}
+        <div className="mb-4" style={{ animation: 'fadeInUp 0.5s ease-out 1.6s both' }}>
+          <div className="flex justify-between text-xs text-slate-500 mb-1">
+            <span>SYSTEM_BOOT</span>
+            <span className="font-mono">initializing...</span>
+          </div>
+          <div className="h-[3px] bg-slate-800 rounded-full overflow-hidden">
+            <div 
+              className="h-full bg-gradient-to-r from-cyan-500 via-emerald-500 to-cyan-400 rounded-full"
+              style={{ animation: 'progressFill 2s ease-in-out forwards' }}
+            />
+          </div>
+        </div>
+
         {/* Scanline Effect */}
         <div className="fixed inset-0 pointer-events-none z-50 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_2px,3px_100%] bg-repeat"></div>
       </div>
@@ -202,11 +263,12 @@ export default function App() {
   }
 
   return (
-    <div className="h-[100dvh] w-screen bg-slate-950 text-slate-200 font-sans selection:bg-cyan-500/30 overflow-hidden flex relative">
+    <div className="h-[100dvh] w-screen bg-slate-950 text-slate-200 font-sans selection:bg-cyan-500/30 overflow-hidden flex relative" style={{ animation: 'fadeInUp 0.6s ease-out' }}>
       
       {/* BACKGROUND EFFECTS */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-cyan-900/20 via-slate-950 to-slate-950 z-0 pointer-events-none"></div>
-      <div className="fixed inset-0 pointer-events-none z-50 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%)] bg-[length:100%_3px] opacity-20"></div>
+      <div className="absolute inset-0 animated-grid-bg z-0 pointer-events-none"></div>
+      <div className="fixed inset-0 pointer-events-none z-50 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.08)_50%)] bg-[length:100%_3px] opacity-15"></div>
 
       {/* SIDEBARNAVIGATION */}
       <nav className="w-64 border-r border-slate-800 bg-slate-900/50 backdrop-blur-md flex-shrink-0 z-10 hidden md:flex flex-col">
@@ -223,13 +285,13 @@ export default function App() {
         </div>
 
         <div className="flex-1 py-6 space-y-1">
-          <NavItem id="dashboard" label="> Dashboard" icon={Cpu} activeTab={activeTab} setActiveTab={setActiveTab} />
-          <NavItem id="blog" label="> Writeups_&_Logs" icon={FileText} activeTab={activeTab} setActiveTab={setActiveTab} />
-          <NavItem id="resume" label="> Resume_&_Bio" icon={Terminal} activeTab={activeTab} setActiveTab={setActiveTab} />
-          <NavItem id="achievements" label="> Trophy Room" icon={Award} activeTab={activeTab} setActiveTab={setActiveTab} />
-          <NavItem id="contact" label="> Contact_Me" icon={Mail} activeTab={activeTab} setActiveTab={setActiveTab} />
+          <NavItem id="dashboard" label="> Dashboard" icon={Cpu} activeTab={activeTab} setActiveTab={handleTabSwitch} />
+          <NavItem id="blog" label="> Writeups_&_Logs" icon={FileText} activeTab={activeTab} setActiveTab={handleTabSwitch} />
+          <NavItem id="resume" label="> Resume_&_Bio" icon={Terminal} activeTab={activeTab} setActiveTab={handleTabSwitch} />
+          <NavItem id="achievements" label="> Trophy Room" icon={Award} activeTab={activeTab} setActiveTab={handleTabSwitch} />
+          <NavItem id="contact" label="> Contact_Me" icon={Mail} activeTab={activeTab} setActiveTab={handleTabSwitch} />
           <div className="pt-4 mt-4 border-t border-slate-800/50">
-             <NavItem id="assistant" label="✨ TACTICAL_AI" icon={Bot} activeTab={activeTab} setActiveTab={setActiveTab} special={true} />
+             <NavItem id="assistant" label="✨ TACTICAL_AI" icon={Bot} activeTab={activeTab} setActiveTab={handleTabSwitch} special={true} />
           </div>
         </div>
 
@@ -241,13 +303,13 @@ export default function App() {
       </nav>
 
       {/* MOBILE NAV (Bottom Bar) */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800 z-50 flex justify-around p-3">
-        <button onClick={() => setActiveTab('dashboard')} className={activeTab === 'dashboard' ? 'text-cyan-400' : 'text-slate-500'}><Cpu size={24} /></button>
-        <button onClick={() => setActiveTab('blog')} className={activeTab === 'blog' ? 'text-cyan-400' : 'text-slate-500'}><FileText size={24} /></button>
-        <button onClick={() => setActiveTab('resume')} className={activeTab === 'resume' ? 'text-cyan-400' : 'text-slate-500'}><Terminal size={24} /></button>
-        <button onClick={() => setActiveTab('achievements')} className={activeTab === 'achievements' ? 'text-cyan-400' : 'text-slate-500'}><Award size={24} /></button>
-        <button onClick={() => setActiveTab('assistant')} className={activeTab === 'assistant' ? 'text-purple-400' : 'text-slate-500'}><Bot size={24} /></button>
-        <button onClick={() => setActiveTab('contact')} className={activeTab === 'contact' ? 'text-cyan-400' : 'text-slate-500'}><Mail size={24} /></button>
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 z-50 flex justify-around p-3">
+        <button onClick={() => handleTabSwitch('dashboard')} className={`transition-all duration-200 ${activeTab === 'dashboard' ? 'text-cyan-400 scale-110' : 'text-slate-500'}`}><Cpu size={22} /></button>
+        <button onClick={() => handleTabSwitch('blog')} className={`transition-all duration-200 ${activeTab === 'blog' ? 'text-cyan-400 scale-110' : 'text-slate-500'}`}><FileText size={22} /></button>
+        <button onClick={() => handleTabSwitch('resume')} className={`transition-all duration-200 ${activeTab === 'resume' ? 'text-cyan-400 scale-110' : 'text-slate-500'}`}><Terminal size={22} /></button>
+        <button onClick={() => handleTabSwitch('achievements')} className={`transition-all duration-200 ${activeTab === 'achievements' ? 'text-cyan-400 scale-110' : 'text-slate-500'}`}><Award size={22} /></button>
+        <button onClick={() => handleTabSwitch('assistant')} className={`transition-all duration-200 ${activeTab === 'assistant' ? 'text-purple-400 scale-110' : 'text-slate-500'}`}><Bot size={22} /></button>
+        <button onClick={() => handleTabSwitch('contact')} className={`transition-all duration-200 ${activeTab === 'contact' ? 'text-cyan-400 scale-110' : 'text-slate-500'}`}><Mail size={22} /></button>
       </div>
 
       {/* MAIN CONTENT AREA */}
@@ -268,8 +330,8 @@ export default function App() {
           </div>
         </header>
 
-        {/* CONTENT WINDOW */}
-        <div className="flex-1 relative min-h-0">
+        {/* CONTENT WINDOW - Page transitions via key */}
+        <div className="flex-1 relative min-h-0 page-transition" key={activeTab}>
 
           {/* DASHBOARD VIEW */}
           {activeTab === 'dashboard' && (
@@ -277,10 +339,21 @@ export default function App() {
               <div className="min-h-full flex flex-col justify-center max-w-4xl mx-auto pb-20 md:pb-0">
                 <div className="mb-8">
                   <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight">
-                    <GlitchText text="HELLO, WORLD" />
+                    <GlitchText text="HELLO, WORLD" interval={5000} />
                   </h1>
                   <div className="text-xl text-cyan-400 font-mono mb-6 min-h-[2rem]">
-                    <Typewriter text={`> ${USER_CONFIG.role}`} />
+                    <Typewriter 
+                      texts={[
+                        `> ${USER_CONFIG.role}`,
+                        '> Penetration Tester',
+                        '> CTF Player',
+                        '> Red Team Operator',
+                        '> Bug Bounty Hunter'
+                      ]}
+                      delay={50}
+                      deleteDelay={25}
+                      pauseTime={2500}
+                    />
                   </div>
                   <p className="text-slate-400 max-w-lg leading-relaxed mb-8 border-l-2 border-slate-700 pl-4">
                     Specializing in Web Application Security, Network Penetration Testing, and Red Team Operations. 
@@ -288,11 +361,11 @@ export default function App() {
                   </p>
                   
                   <div className="flex flex-wrap gap-4">
-                    <button onClick={() => setActiveTab('blog')} className="px-6 py-2 bg-cyan-600/20 border border-cyan-500/50 text-cyan-300 hover:bg-cyan-600/40 hover:scale-105 transition-all font-mono text-sm flex items-center group">
+                    <button onClick={() => handleTabSwitch('blog')} className="px-6 py-2.5 bg-cyan-600/20 border border-cyan-500/50 text-cyan-300 hover:bg-cyan-600/40 hover:scale-105 hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all font-mono text-sm flex items-center group rounded">
                       <ChevronRight className="mr-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                       READ_LATEST_LOGS
                     </button>
-                    <button onClick={() => setActiveTab('assistant')} className="px-6 py-2 bg-purple-900/20 border border-purple-500/50 text-purple-300 hover:bg-purple-900/40 transition-all font-mono text-sm flex items-center group">
+                    <button onClick={() => handleTabSwitch('assistant')} className="px-6 py-2.5 bg-purple-900/20 border border-purple-500/50 text-purple-300 hover:bg-purple-900/40 hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] transition-all font-mono text-sm flex items-center group rounded">
                       <Sparkles className="mr-2 h-4 w-4 group-hover:spin-slow" />
                       OPEN_AI_UPLINK
                     </button>
@@ -300,19 +373,28 @@ export default function App() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="p-4 bg-slate-800/50 border border-slate-700 rounded">
-                    <div className="text-xs font-mono text-slate-500 mb-2">CURRENT_STATUS</div>
+                  <div className="p-4 bg-slate-800/40 border border-slate-700/50 rounded-lg hover:border-emerald-500/30 transition-all duration-300 group" style={{ animation: 'fadeInUp 0.5s ease-out 0.2s both' }}>
+                    <div className="text-xs font-mono text-slate-500 mb-2 flex items-center">
+                      <span className="w-1 h-1 bg-slate-600 rounded-full mr-1.5"></span>
+                      CURRENT_STATUS
+                    </div>
                     <div className="text-emerald-400 font-bold flex items-center">
-                      <span className="w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse"></span>
+                      <span className="w-2 h-2 bg-emerald-500 rounded-full mr-2" style={{ animation: 'pulseGlow 2s ease-in-out infinite', '--cyan-glow': 'rgba(16, 185, 129, 0.4)' }}></span>
                       Open to Work
                     </div>
                   </div>
-                  <div className="p-4 bg-slate-800/50 border border-slate-700 rounded">
-                    <div className="text-xs font-mono text-slate-500 mb-2">LAST_COMMIT</div>
-                    <div className="text-slate-200">{lastCommit}</div>
+                  <div className="p-4 bg-slate-800/40 border border-slate-700/50 rounded-lg hover:border-cyan-500/30 transition-all duration-300 group" style={{ animation: 'fadeInUp 0.5s ease-out 0.35s both' }}>
+                    <div className="text-xs font-mono text-slate-500 mb-2 flex items-center">
+                      <span className="w-1 h-1 bg-slate-600 rounded-full mr-1.5"></span>
+                      LAST_COMMIT
+                    </div>
+                    <div className="text-slate-200 font-mono text-sm">{lastCommit}</div>
                   </div>
-                  <div className="p-4 bg-slate-800/50 border border-slate-700 rounded">
-                    <div className="text-xs font-mono text-slate-500 mb-2">VISITOR_UPLINK</div>
+                  <div className="p-4 bg-slate-800/40 border border-slate-700/50 rounded-lg hover:border-purple-500/30 transition-all duration-300 group" style={{ animation: 'fadeInUp 0.5s ease-out 0.5s both' }}>
+                    <div className="text-xs font-mono text-slate-500 mb-2 flex items-center">
+                      <span className="w-1 h-1 bg-slate-600 rounded-full mr-1.5"></span>
+                      VISITOR_UPLINK
+                    </div>
                     <div className="text-cyan-400 font-mono text-sm">{visitorData.ip}</div>
                     <div className="text-xs text-emerald-400 font-mono mt-1">{visitorData.location}</div>
                   </div>
@@ -637,23 +719,25 @@ export default function App() {
                   const content = (
                     <>
                     <div className="absolute inset-0 bg-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div className="w-16 h-16 mb-4 rounded-full bg-slate-800 border-2 border-slate-600 flex items-center justify-center text-2xl font-bold font-mono text-slate-400 group-hover:border-cyan-400 group-hover:text-cyan-400 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.3)] transition-all">
+                    <div className="w-16 h-16 mb-4 rounded-full bg-slate-800 border-2 border-slate-600 flex items-center justify-center text-2xl font-bold font-mono text-slate-400 group-hover:border-cyan-400 group-hover:text-cyan-400 group-hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] transition-all duration-300" style={{ animation: 'float 3s ease-in-out infinite', animationDelay: `${idx * 0.5}s` }}>
                       {trophy.icon === 'GDSC' ? <Globe size={32} /> : trophy.icon === 'GCP' ? <Cloud size={32} /> : trophy.icon}
                     </div>
                     <h3 className="font-bold text-slate-200 mb-1">{trophy.title}</h3>
                     <p className="text-xs font-mono text-slate-500">{trophy.issuer}</p>
-                    <div className="mt-4 text-xs bg-slate-800 px-2 py-1 rounded text-slate-400 border border-slate-700">
+                    <div className="mt-4 text-xs bg-slate-800/80 px-3 py-1.5 rounded-full text-slate-400 border border-slate-700 font-mono">
                       ACQUIRED: {trophy.date}
                     </div>
                     </>
                   );
 
+                  const cardClasses = `bg-gradient-to-br from-slate-800/80 to-slate-900 p-6 rounded-lg border border-slate-700 flex flex-col items-center text-center group hover:-translate-y-2 hover:border-cyan-500/50 hover:shadow-[0_8px_30px_rgba(6,182,212,0.15)] transition-all duration-300 relative overflow-hidden`;
+
                   return trophy.link ? (
-                    <a key={idx} href={trophy.link} target="_blank" rel="noreferrer" className="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-lg border border-slate-700 flex flex-col items-center text-center group hover:-translate-y-1 hover:border-cyan-500/50 transition-all duration-300 relative overflow-hidden cursor-pointer">
+                    <a key={idx} href={trophy.link} target="_blank" rel="noreferrer" className={`${cardClasses} cursor-pointer`} style={{ animation: `fadeInUp 0.5s ease-out ${idx * 0.1}s both` }}>
                       {content}
                     </a>
                   ) : (
-                    <div key={idx} className="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-lg border border-slate-700 flex flex-col items-center text-center group hover:-translate-y-1 hover:border-cyan-500/50 transition-all duration-300 relative overflow-hidden">
+                    <div key={idx} className={cardClasses} style={{ animation: `fadeInUp 0.5s ease-out ${idx * 0.1}s both` }}>
                       {content}
                     </div>
                   );
@@ -717,6 +801,13 @@ export default function App() {
                  </div>
                </div>
             </WindowFrame>
+          )}
+
+          {/* ADMIN VIEW (Dev-only - accessed via Ctrl+Shift+A) */}
+          {import.meta.env.DEV && activeTab === 'admin' && AdminPage && (
+            <React.Suspense fallback={<div className="text-center text-slate-500 font-mono p-10">Loading admin...</div>}>
+              <AdminPage onBack={() => handleTabSwitch('dashboard')} />
+            </React.Suspense>
           )}
 
         </div>

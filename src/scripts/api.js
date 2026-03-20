@@ -1,10 +1,7 @@
 export const callGemini = async (prompt, systemInstruction = "") => {
-  // Obfuscated key to bypass static scanners
-  const p1 = "AIzaSyAqUt3WiBqDOHt";
-  const p2 = "QcTQ030YjBkodvBsMVKU";
-  const apiKey = p1 + p2;
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 
-  if (!apiKey) return "Error: API Key missing. Check neural uplink configuration.";
+  if (!apiKey) return "Error: API Key missing. Set VITE_GEMINI_API_KEY in .env";
 
   try {
     // Using Gemini 2.5 Flash (Stable)
