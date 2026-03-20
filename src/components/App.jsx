@@ -633,30 +633,32 @@ export default function App() {
                 <div className="lg:col-span-2 space-y-8">
                   
                   {/* Experience */}
-                  <div>
-                    <h3 className="text-cyan-400 font-mono mb-6 flex items-center">
-                      <Terminal size={16} className="mr-2" /> EXPERIENCE_LOG
-                    </h3>
-                    <div className="relative border-l border-slate-700 ml-3 space-y-8">
-                      {RESUME_DATA.experience.map((job, idx) => (
-                        <div key={idx} className="pl-8 relative group">
-                          {/* Timeline Dot */}
-                          <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 bg-slate-600 rounded-full border border-slate-900 group-hover:bg-cyan-400 group-hover:shadow-[0_0_10px_rgba(34,211,238,0.5)] transition-all"></div>
-                          
-                          <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                            <h4 className="text-xl font-bold text-slate-200">{job.role}</h4>
-                            <span className="font-mono text-xs text-cyan-500/80 bg-cyan-950/30 px-2 py-1 rounded">{job.period}</span>
+                  {RESUME_DATA.experience && RESUME_DATA.experience.length > 0 && (
+                    <div>
+                      <h3 className="text-cyan-400 font-mono mb-6 flex items-center">
+                        <Terminal size={16} className="mr-2" /> EXPERIENCE_LOG
+                      </h3>
+                      <div className="relative border-l border-slate-700 ml-3 space-y-8">
+                        {RESUME_DATA.experience.map((job, idx) => (
+                          <div key={idx} className="pl-8 relative group">
+                            {/* Timeline Dot */}
+                            <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 bg-slate-600 rounded-full border border-slate-900 group-hover:bg-cyan-400 group-hover:shadow-[0_0_10px_rgba(34,211,238,0.5)] transition-all"></div>
+                            
+                            <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
+                              <h4 className="text-xl font-bold text-slate-200">{job.role}</h4>
+                              <span className="font-mono text-xs text-cyan-500/80 bg-cyan-950/30 px-2 py-1 rounded">{job.period}</span>
+                            </div>
+                            <div className="text-sm font-mono text-slate-400 mb-3">@ {job.company}</div>
+                            <ul className="list-disc list-outside ml-4 space-y-1 text-slate-300">
+                              {job.details.map((detail, dIdx) => (
+                                <li key={dIdx}>{detail}</li>
+                              ))}
+                            </ul>
                           </div>
-                          <div className="text-sm font-mono text-slate-400 mb-3">@ {job.company}</div>
-                          <ul className="list-disc list-outside ml-4 space-y-1 text-slate-300">
-                            {job.details.map((detail, dIdx) => (
-                              <li key={dIdx}>{detail}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
 
                   {/* Projects */}
                   <div>

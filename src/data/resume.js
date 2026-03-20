@@ -13,27 +13,7 @@ export const RESUME_DATA = {
       details: []
     }
   ],
-  experience: [
-    {
-      role: "Mobile Beta Tester (Android Platform)",
-      company: "Confidential Mobile Manufacturer",
-      period: "May 2025 - Present",
-      details: [
-        "Executing black-box testing on unreleased smartphone hardware, identifying critical UI/UX and performance bottlenecks.",
-        "Reporting functional bugs and system instability using proprietary tracking tools, directly aiding the QA team.",
-        "Evaluated device thermal performance and battery optimization under high-load scenarios."
-      ]
-    },
-    {
-      role: "Cybersecurity Practice & Research",
-      company: "TryHackMe & Hack The Box",
-      period: "Dec 2024 - Present",
-      details: [
-        "Engaged in continuous offensive security simulations, documenting attack vectors on portfolio (haridevp.dev).",
-        "Maintained active researcher profile on TryHackMe (tryhackme.com/p/ArtemizZ), applying theoretical concepts to real-world labs."
-      ]
-    }
-  ],
+  experience: [],
   projects: [
     {
       title: "Stealth C2 Framework (Red Team Research)",
@@ -57,18 +37,6 @@ export const RESUME_DATA = {
         "Hardened the environment by configuring Group Policy Objects (GPOs) and auditing event logs."
       ]
     },
-    {
-      title: "SentiVest (IoT Fall Detection System)",
-      tech: "C++, Arduino, MPU6050",
-      period: "Aug 2025 - Oct 2025",
-      link: "https://github.com/haridevp/SentiVest",
-      details: [
-        "Developed a wearable vest integrating an MPU6050 gyroscope and pulse sensor for real-time elderly monitoring.",
-        "Programmed an algorithm to distinguish between normal movement and sudden falls with high accuracy.",
-        "Implemented an automated alert system to trigger SMS notifications via GSM module in critical events.",
-        "Repository: View Source Code (GitHub)"
-      ]
-    }
   ],
   skills: [
     { category: "Languages", items: ["Python", "C++", "SQL", "HTML/CSS", "JavaScript", "Bash"] },
