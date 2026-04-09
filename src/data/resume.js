@@ -25,34 +25,32 @@ export const RESUME_DATA = {
   projects: [
     {
       title: "Stealth C2 Framework",
-      tech: "Python, Discord API, AES-256",
+      tech: "Python, Discord API, AES-256-GCM",
       period: "Nov 2025 - Jan 2026",
       link: "https://github.com/haridevp/Stealth-C2",
       details: [
-        "Developed a modular C2 framework using AES-256-GCM encrypted communication tunnelled over legitimate Discord API traffic to bypass firewall restrictions.",
-        "Implemented emoji-based steganographic protocols to disguise C2 commands as innocuous chat messages, reducing traffic anomaly signatures.",
-        "Designed cross-platform persistence via user-level systemd (Linux) and startup folder injection (Windows) without requiring elevated privileges."
+        "Built a modular red team C2 framework tunnelling AES-256-GCM encrypted traffic over the Discord API to blend with legitimate HTTPS traffic and bypass firewall egress restrictions.",
+        "Implemented emoji-based steganographic command protocol mapping 7 operator commands (RCE, exfiltration, surveillance, persistence) to innocuous chat messages; integrated anti-forensic detection across 5 analysis tools (Wireshark, ProcMon, Cuckoo) with automated kill switch."
       ]
     },
     {
       title: "Enterprise Active Directory Attack Lab",
-      tech: "Windows Server, PowerShell, Impacket",
+      tech: "Windows Server 2022, PowerShell, Impacket",
       period: "Nov 2025 - Dec 2025",
       link: "https://github.com/haridevp/Enterprise-AD-Attack-Lab",
       details: [
-        "Designed and deployed a virtual enterprise AD environment simulating a real-world corporate network with Windows Server 2022 and Windows 11 endpoints.",
-        "Executed a full attack chain including LLMNR poisoning, Kerberoasting, SMB relay, Pass-the-Hash, and privilege escalation to Domain Admin.",
-        "Applied defensive hardening countermeasures using Group Policy Objects (GPO), LAPS, and event log auditing to understand detection and mitigation."
+        "Built a 4-machine virtual enterprise environment (Windows Server 2022 DC, 2 Windows 11 workstations, Kali attacker) simulating a real-world corporate network for adversary simulation.",
+        "Executed a full red team attack chain – LLMNR poisoning, Kerberoasting, SMB relay, Pass-the-Hash, and privilege escalation – achieving Domain Admin access while bypassing Windows Defender default configurations."
       ]
     },
     {
       title: "AI Automated Pentesting Framework",
-      tech: "Python, RAG, LLM (In Development)",
+      tech: "FastAPI, Celery, ChromaDB, LangChain, PostgreSQL",
       period: "Jan 2026 - Present",
       link: "https://github.com/haridevp/AI-Automated-Pentesting-Framework",
       details: [
-        "Building a RAG-based penetration testing assistant that retrieves contextual attack patterns and CVE data to generate adaptive, behaviour-driven pentest plans.",
-        "Implementing behavioural analysis of target system responses to dynamically adjust attack strategies during an engagement; targeting conference publication 2026."
+        "Building a RAG-based pentesting assistant (team of 4) that retrieves contextual CVE data and attack patterns to generate adaptive, behaviour-driven engagement plans against live targets.",
+        "Implementing LLM-driven behavioural analysis of target system responses to dynamically adjust attack strategies mid-engagement; targeting conference publication 2026."
       ]
     },
     {
@@ -62,18 +60,17 @@ export const RESUME_DATA = {
       link: "https://github.com/haridevp/Alumini_Connect",
       liveLink: "https://haridevp.dev/Alumini_Connect/",
       details: [
-        "Built a role-based networking platform implementing AES-256-GCM encryption via the Web Crypto API — server stores only ciphertext and IV.",
-        "Implemented NIST SP 800-63-2 compliant authentication with SHA-256 salted hashing and MFA (Email OTP), achieving Level of Assurance 2.",
-        "Designed RBAC with tamper-evident job referrals via SHA-256 digital signatures; deployed with HTTPS enforced end-to-end."
+        "Built a 3-role RBAC networking platform with AES-256-GCM encryption via Web Crypto API (server stores only ciphertext and IV) and NIST SP 800-63-2 compliant auth – SHA-256 salted hashing, MFA (Email OTP), Level of Assurance 2.",
+        "Enforced tamper-evident job referrals via SHA-256 digital signatures and end-to-end HTTPS; deployed live with frontend on GitHub Pages and backend on Render."
       ]
     }
   ],
   publications: [
     {
       title: "Lane Change Prediction & Obstacle Avoidance in Autonomous Vehicles Using Rainbow DQN",
-      publisher: "SCRS CIMA 2026, NIT Puducherry (Springer LNNS, Scopus-indexed) – Under Review",
+      publisher: "SCRS CIMA 2026, NIT Puducherry (Springer LNNS, Scopus-indexed) – Accepted",
       details: [
-        "Haridev P (co-author) – “An Adaptive Framework for Lane Change Prediction and Obstacle Avoidance in Autonomous Vehicles Using Rainbow DQN”"
+        "Haridev P (co-author) \u2013 \"An Adaptive Framework for Lane Change Prediction and Obstacle Avoidance in Autonomous Vehicles Using Rainbow DQN,\" SCRS CIMA 2026, NIT Puducherry (Springer LNNS, Scopus-indexed) \u2013 Accepted."
       ]
     }
   ],
@@ -81,7 +78,8 @@ export const RESUME_DATA = {
     { category: "Languages", items: ["Python", "C++", "SQL", "HTML/CSS", "JavaScript", "Bash"] },
     { category: "Security Tools", items: ["Nmap", "Burp Suite", "Wireshark", "Impacket", "John the Ripper", "Metasploit", "BloodHound"] },
     { category: "Systems", items: ["Linux (Kali, Fedora)", "Windows Server", "Active Directory"] },
-    { category: "Concepts", items: ["Penetration Testing", "C2 Infrastructure", "AD Exploitation", "Malware Analysis", "Red Team Tradecraft"] },
+    { category: "Concepts", items: ["Penetration Testing", "Red Teaming", "C2 Infrastructure", "Post-Exploitation", "Privilege Escalation", "Network Enumeration", "AD Exploitation", "Malware Analysis"] },
+    { category: "Developer Tools", items: ["Git", "Docker"] },
     { category: "Platforms", items: ["TryHackMe (ArtemizZ)", "Hack The Box"] }
   ],
   certifications: [

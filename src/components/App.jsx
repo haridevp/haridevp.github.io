@@ -623,7 +623,7 @@ export default function App() {
                      <h3 className="text-cyan-400 font-mono mb-4 border-b border-slate-700 pb-2 flex items-center">
                       <Download size={16} className="mr-2" /> EXPORT
                     </h3>
-                    <a href="/Resume.pdf" download="Haridev_P_Resume.pdf" className="w-full py-2 bg-slate-700 hover:bg-slate-600 text-white font-mono text-sm rounded transition-colors flex justify-center items-center">
+                    <a href="https://drive.google.com/file/d/11Z8Hjht9I_tXcc01UM-g3IXBK8JEX5lM/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="w-full py-2 bg-slate-700 hover:bg-slate-600 text-white font-mono text-sm rounded transition-colors flex justify-center items-center">
                       RESUME.PDF
                     </a>
                   </div>
