@@ -32,6 +32,7 @@ const AdminPage = import.meta.env.DEV
 export default function App() {
   const [selectedPost, setSelectedPost] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [visiblePostsCount, setVisiblePostsCount] = useState(5);
   const [lastCommit, setLastCommit] = useState("Loading...");
   const [showAdmin, setShowAdmin] = useState(false);
 
@@ -485,7 +486,7 @@ export default function App() {
 
         {filteredPosts.length > 0 ? (
           <div className="space-y-4">
-            {filteredPosts.map(post => (
+            {filteredPosts.slice(0, visiblePostsCount).map(post => (
               <div
                 key={post.id}
                 onClick={() => setSelectedPost(post)}
@@ -519,6 +520,16 @@ export default function App() {
                 </div>
               </div>
             ))}
+            {filteredPosts.length > visiblePostsCount && (
+              <div className="text-center pt-6">
+                <button
+                  onClick={() => setVisiblePostsCount(prev => prev + 5)}
+                  className="btn-secondary"
+                >
+                  Show More Writeups
+                </button>
+              </div>
+            )}
           </div>
         ) : (
           <div className="text-center py-16 text-gray-600">
