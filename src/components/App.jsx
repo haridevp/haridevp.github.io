@@ -252,10 +252,7 @@ export default function App() {
           {/* Stats Row */}
           <div className="flex flex-wrap gap-6 text-sm animate-fade-in-up delay-500">
             <div className="flex items-center gap-2 text-gray-500">
-              <span className="font-mono text-gray-400">{RESUME_DATA.projects?.length || 0}</span> Projects
-            </div>
-            <div className="flex items-center gap-2 text-gray-500">
-              <span className="font-mono text-gray-400">{BLOG_POSTS.length}</span> Writeups
+              <span className="font-mono text-gray-400">{BLOG_POSTS.length}</span> Writeups Published
             </div>
             <div className="flex items-center gap-2 text-gray-500">
               Last commit: <span className="font-mono text-gray-400">{lastCommit}</span>
