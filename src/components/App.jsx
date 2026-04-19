@@ -321,6 +321,44 @@ export default function App() {
             </div>
           </div>
         </div>
+
+        {/* ===== ACHIEVEMENTS & STATS ===== */}
+        <div className="mt-16 pt-8 border-t border-[var(--border-subtle)]">
+          <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">Achievements & Badges</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {TROPHIES.map((trophy, idx) => {
+              const inner = (
+                <div className="card text-center group cursor-pointer h-full flex flex-col items-center justify-center py-6">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold font-mono mb-3 transition-all duration-300 group-hover:scale-110"
+                    style={{ background: 'var(--accent-subtle)', color: 'var(--accent)', border: '1px solid rgba(79, 209, 197, 0.15)' }}
+                  >
+                    {trophy.icon === 'GDSC' ? <Globe size={20} /> : trophy.icon === 'GCP' ? <Cloud size={20} /> : trophy.icon}
+                  </div>
+                  <h4 className="font-semibold text-white text-sm mb-1">{trophy.title}</h4>
+                  <p className="text-xs text-gray-500">{trophy.issuer}</p>
+                </div>
+              );
+
+              return trophy.link ? (
+                <a key={idx} href={trophy.link} target="_blank" rel="noreferrer">{inner}</a>
+              ) : (
+                <div key={idx}>{inner}</div>
+              );
+            })}
+          </div>
+
+          {/* TryHackMe Stats */}
+          <div className="mt-8 card flex flex-col items-center">
+            <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">TryHackMe Stats</h4>
+            <iframe
+              src={`https://tryhackme.com/api/v2/badges/public-profile?userPublicId=${USER_CONFIG.thmUserPublicId}`}
+              style={{ border: 'none' }}
+              className="w-full max-w-lg h-52 overflow-hidden"
+              title="TryHackMe Stats"
+              scrolling="no"
+            ></iframe>
+          </div>
+        </div>
       </Section>
 
       {/* ===== PROJECTS ===== */}
@@ -414,42 +452,6 @@ export default function App() {
         </Section>
       )}
 
-      {/* ===== ACHIEVEMENTS ===== */}
-      <Section id="achievements" className="!py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {TROPHIES.map((trophy, idx) => {
-            const inner = (
-              <div className="card text-center group cursor-pointer h-full flex flex-col items-center justify-center py-6">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold font-mono mb-3 transition-all duration-300 group-hover:scale-110"
-                  style={{ background: 'var(--accent-subtle)', color: 'var(--accent)', border: '1px solid rgba(79, 209, 197, 0.15)' }}
-                >
-                  {trophy.icon === 'GDSC' ? <Globe size={20} /> : trophy.icon === 'GCP' ? <Cloud size={20} /> : trophy.icon}
-                </div>
-                <h4 className="font-semibold text-white text-sm mb-1">{trophy.title}</h4>
-                <p className="text-xs text-gray-500">{trophy.issuer}</p>
-              </div>
-            );
-
-            return trophy.link ? (
-              <a key={idx} href={trophy.link} target="_blank" rel="noreferrer">{inner}</a>
-            ) : (
-              <div key={idx}>{inner}</div>
-            );
-          })}
-        </div>
-
-        {/* TryHackMe Stats */}
-        <div className="mt-8 card flex flex-col items-center">
-          <h4 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">TryHackMe Stats</h4>
-          <iframe
-            src={`https://tryhackme.com/api/v2/badges/public-profile?userPublicId=${USER_CONFIG.thmUserPublicId}`}
-            style={{ border: 'none' }}
-            className="w-full max-w-lg h-52 overflow-hidden"
-            title="TryHackMe Stats"
-            scrolling="no"
-          ></iframe>
-        </div>
-      </Section>
 
       {/* ===== BLOG / WRITEUPS ===== */}
       <Section id="blog">
