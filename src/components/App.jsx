@@ -244,7 +244,7 @@ export default function App() {
             <div className="status-badge-cyber">
               <span className="status-dot-cyan"></span>
               <span className="font-mono text-xs font-semibold tracking-wide">
-                ASTRA LAB (CyStar), IIT MADRAS
+                SECURITY RESEARCH INTERN • ASTRA LAB, IIT MADRAS
               </span>
             </div>
             <div className="status-badge">
@@ -304,8 +304,8 @@ export default function App() {
               {/* Telemetry Quick Badges */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-cyan-500/15">
                 <div className="p-2.5 rounded-lg bg-cyan-950/20 border border-cyan-500/20">
-                  <div className="text-[10px] font-mono text-gray-400 uppercase">Affiliation</div>
-                  <div className="font-mono font-bold text-xs sm:text-sm text-cyan-300 truncate">IIT Madras</div>
+                  <div className="text-[10px] font-mono text-gray-400 uppercase">Internship</div>
+                  <div className="font-mono font-bold text-xs sm:text-sm text-cyan-300 truncate">ASTRA Lab, IITM</div>
                 </div>
                 <div className="p-2.5 rounded-lg bg-cyan-950/20 border border-cyan-500/20">
                   <div className="text-[10px] font-mono text-gray-400 uppercase">TryHackMe</div>
@@ -363,7 +363,7 @@ export default function App() {
               </h3>
 
               <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
-                I am a Computer Science researcher and offensive security specialist focused on adversary emulation, Active Directory exploitation, and covert Command &amp; Control (C2) infrastructure development. Currently researching at <span className="text-cyan-300 font-semibold">{USER_CONFIG.lab}</span> under Prof. Narayanaswamy N S and Dr. Jaimandeep Singh, studying adversary tradecraft, initial access methodologies, and Windows internals evasion strategies.
+                I am a Computer Science researcher and offensive security specialist focused on adversary emulation, Active Directory exploitation, and covert Command &amp; Control (C2) infrastructure development. Currently a <span className="text-cyan-300 font-semibold">Security Research Intern</span> at <span className="text-cyan-300 font-semibold">{USER_CONFIG.lab}</span> under Prof. Narayanaswamy N S and Dr. Jaimandeep Singh, studying adversary tradecraft, initial access methodologies, and Windows internals evasion strategies.
               </p>
 
               <div className="flex flex-wrap gap-x-6 gap-y-2 pt-2 text-xs font-mono text-gray-400">
@@ -385,7 +385,7 @@ export default function App() {
               </div>
               <div className="space-y-2.5 text-xs font-mono">
                 <div className="flex items-center justify-between p-2 rounded bg-black/40 border border-cyan-500/15">
-                  <span className="text-gray-400">Lab Research</span>
+                  <span className="text-gray-400">Research Intern</span>
                   <span className="text-cyan-300 font-bold">CipherC2 @ IITM</span>
                 </div>
                 <div className="flex items-center justify-between p-2 rounded bg-black/40 border border-cyan-500/15">

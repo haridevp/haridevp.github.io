@@ -9,7 +9,7 @@ const COMMANDS = {
     output: [
       `OPERATOR : ${USER_CONFIG.username}`,
       `ROLE     : ${USER_CONFIG.role}`,
-      `LAB      : ASTRA Lab (CyStar), IIT Madras`,
+      `LAB      : ASTRA Lab (CyStar), IIT Madras (Security Research Intern)`,
       `FOCUS    : Adversary Emulation, C2 Infrastructure, AD Exploitation, Windows Internals`,
       `STATUS   : Active Research • Available for Offensive Security / Red Team roles`
     ]
