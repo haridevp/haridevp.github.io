@@ -80,9 +80,22 @@ export default function AdminPage({ onBack }) {
 
   // Load posts when authenticated
   useEffect(() => {
+    let ignore = false;
     if (isAuthenticated || sessionStorage.getItem('admin_auth') === 'true') {
-      fetchPosts();
+      fetch('/api/list-posts')
+        .then(res => res.json())
+        .then(data => {
+          if (!ignore) {
+            setExistingPosts(data.files || []);
+          }
+        })
+        .catch(err => {
+          console.error('Failed to fetch posts:', err);
+        });
     }
+    return () => {
+      ignore = true;
+    };
   }, [isAuthenticated]);
 
   const handleLogin = (e) => {

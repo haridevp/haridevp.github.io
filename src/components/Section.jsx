@@ -4,6 +4,9 @@ export default function Section({ id, children, className = '' }) {
   const ref = useRef(null);
 
   useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -13,14 +16,10 @@ export default function Section({ id, children, className = '' }) {
       { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+    observer.observe(node);
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
+      observer.unobserve(node);
     };
   }, []);
 

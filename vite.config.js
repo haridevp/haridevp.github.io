@@ -6,6 +6,11 @@ import adminPlugin from './src/scripts/adminPlugin.js'
 export default defineConfig({
   plugins: [react(), adminPlugin()],
   base: '/',
+  server: {
+    port: 3000,
+    host: '0.0.0.0',
+    strictPort: false
+  },
   build: {
     // Let Vite handle file names with hashes for better caching
     outDir: 'dist',
