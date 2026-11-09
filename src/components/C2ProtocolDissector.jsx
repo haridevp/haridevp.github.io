@@ -58,6 +58,20 @@ const C2_COMMANDS = [
   }
 ];
 
+// Safely encode any UTF-8 string (including emojis) to Base64
+const safeBase64 = (str) => {
+  try {
+    const bytes = new TextEncoder().encode(str);
+    let binary = '';
+    for (let i = 0; i < bytes.length; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return btoa(binary);
+  } catch {
+    return 'W1NURUFMVEgtQzJdOjpTRVNTSU9OX0VOQ1JZUFRFRF9QQUNLRVQ=';
+  }
+};
+
 export default function C2ProtocolDissector() {
   const [selectedCmd, setSelectedCmd] = useState(C2_COMMANDS[0]);
   const [customInput, setCustomInput] = useState('');
@@ -70,7 +84,7 @@ export default function C2ProtocolDissector() {
   // Generate deterministic-looking IV & ciphertext preview for education
   const pseudoIv = "a9f3b2c1e8471029c564d2e1";
   const pseudoTag = "e481b99201f8ca3199bc113941fe0a81";
-  const pseudoCipher = btoa(`[STEALTH-C2]::${currentEmoji}::${commandText}::NONCE_VALID`).slice(0, 48) + '...';
+  const pseudoCipher = safeBase64(`[STEALTH-C2]::${currentEmoji}::${commandText}::NONCE_VALID`).slice(0, 48) + '...';
 
   const handleCopyPayload = () => {
     navigator.clipboard.writeText(`Discord Payload:\nChannel: #c2-relay (HTTPS/443)\nMessage: "${currentEmoji} [AES-GCM: ${pseudoCipher}]"\nIV: ${pseudoIv}\nTag: ${pseudoTag}`);
