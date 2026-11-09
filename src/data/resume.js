@@ -30,12 +30,12 @@ export const RESUME_DATA = {
       period: "May 2026 – Present",
       current: true,
       mentors: "Prof. Narayanaswamy N S & Dr. Jaimandeep Singh (Senior Consultant, ex-MoD)",
-      project: "Adversary Simulation & Windows Internals Evasion",
+      project: "CipherC2 (Confidential Lab Project)",
       details: [
-        "Conducted offensive security research under Prof. Narayanaswamy N S and Dr. Jaimandeep Singh (Senior Consultant, ex-MoD), modeling adversary C2 TTPs and initial access methodologies aligned with the MITRE ATT&CK framework.",
+        "Conducted offensive security research under Prof. Narayanaswamy N S and Dr. Jaimandeep Singh (Senior Consultant, ex-MoD); contributed to CipherC2, a confidential lab project modelling adversary C2 TTPs and initial access methodologies aligned with the MITRE ATT&CK framework.",
         "Applied Windows internals knowledge to research evasion strategies and initial access vectors for adversary emulation scenarios."
       ],
-      tags: ["Adversary Simulation", "Windows Internals", "MITRE ATT&CK", "C2 Infrastructure", "Evasion Strategies"]
+      tags: ["Adversary Simulation", "CipherC2", "Windows Internals", "MITRE ATT&CK", "C2 Infrastructure", "Evasion Strategies"]
     }
   ],
   talks: [

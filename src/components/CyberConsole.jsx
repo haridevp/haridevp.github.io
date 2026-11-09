@@ -20,7 +20,7 @@ const COMMANDS = {
       `[+] ASTRA Lab (CyStar), IIT Madras (May 2026 – Present)`,
       `    Role: Security Research Intern | Location: Chennai, TN`,
       `    Advisors: Prof. Narayanaswamy N S & Dr. Jaimandeep Singh (Senior Consultant, ex-MoD)`,
-      `    Research: Adversary Simulation (ASTRA Lab) - C2 TTPs, evasion & initial access vectors`,
+      `    Research: CipherC2 (Confidential Lab Project) - adversary C2 TTPs & initial access vectors`,
       `    Domain: Windows internals evasion strategies & MITRE ATT&CK framework mapping`
     ]
   },
@@ -51,7 +51,7 @@ const COMMANDS = {
       `    • TA0001 [Initial Access]        : DeepTrustxAI workshop speaker, custom phishing & payloads`,
       `    • TA0004 [Privilege Escalation] : Enterprise AD Lab (Kerberoasting, Pass-the-Hash)`,
       `    • TA0008 [Lateral Movement]     : SMB relay, BloodHound attack path auditing`,
-      `    • TA0011 [Command & Control]    : Stealth-C2 Discord conduit & covert egress modeling`
+      `    • TA0011 [Command & Control]    : CipherC2 research & Stealth-C2 Discord conduit`
     ]
   }
 };

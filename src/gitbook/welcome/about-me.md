@@ -16,7 +16,7 @@
 
 I am a Computer Science engineer and offensive security specialist based in India. My work centers on adversary simulation, Active Directory exploitation chains, and designing covert Command & Control infrastructures that evade modern enterprise telemetry.
 
-At **ASTRA Lab (CyStar), IIT Madras**, my research centers on adversary simulation, analyzing adversary tactics, techniques, and procedures (TTPs) mapped to the MITRE ATT&CK framework, with a specific focus on Windows internals evasion, in-memory execution, and covert network egress channels.
+At **ASTRA Lab (CyStar), IIT Madras**, I contribute to **CipherC2** (a confidential lab project) focusing on adversary emulation, analyzing adversary tactics, techniques, and procedures (TTPs) mapped to the MITRE ATT&CK framework, Windows internals evasion, in-memory execution, and covert network egress channels.
 
 ---
 

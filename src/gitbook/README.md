@@ -17,6 +17,7 @@ Welcome to my personal offensive security knowledge base. Here you will find det
 | Verification | Detail | Context & Scope |
 | :--- | :--- | :--- |
 | **Research Appointment** | **ASTRA Lab (CyStar), IIT Madras** | Advised by Prof. Narayanaswamy N S & Dr. Jaimandeep Singh (Senior Consultant, ex-MoD) |
+| **Lab Project** | **CipherC2 (Confidential Lab Project)** | ASTRA Lab adversary simulation initiative aligned with MITRE ATT&CK |
 | **Workshop Speaker** | **DeepTrustxAI (2026)** | Presented technical session on Initial Access Vectors (IAV) & adversary tradecraft |
 | **Peer-Reviewed Research** | **Springer LNNS / Scopus-Indexed** | Corresponding Author: Autonomous Navigation & RL (SCRS CIMA 2026, NIT Puducherry) |
 | **TryHackMe** | **24 Writeups Documented (`ArtemizZ`)** | 24 machine walkthroughs documented; full Advent of Cyber completion |
