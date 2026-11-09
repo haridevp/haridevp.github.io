@@ -6,12 +6,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
-:root {
+:root,
+html.dark,
+[data-theme="dark"] {
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
   --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-  /* Refined Minimal Dark Palette */
+  /* Black / Dark Palette (Default) */
   --bg-primary: #090a0f;
   --bg-secondary: #0e1118;
   --bg-card: #12151f;
@@ -30,6 +32,37 @@
   --accent-teal: #2dd4bf;
   --accent-emerald: #10b981;
   --accent-indigo: #818cf8;
+
+  color-scheme: dark;
+}
+
+html.light,
+[data-theme="light"] {
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* White / Light Palette */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --bg-glass: rgba(255, 255, 255, 0.85);
+
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-medium: rgba(0, 0, 0, 0.14);
+  --border-bright: rgba(0, 0, 0, 0.25);
+
+  --text-primary: #090a0f;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+
+  --accent: #0284c7;
+  --accent-teal: #0d9488;
+  --accent-emerald: #059669;
+  --accent-indigo: #6366f1;
+
+  color-scheme: light;
 }
 
 /* =========================================================
@@ -40,7 +73,6 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
   background-color: var(--bg-primary);
-  color-scheme: dark;
 }
 
 body {
@@ -548,4 +580,209 @@ dialog::backdrop {
 
 .markdown-body tr:nth-child(2n) {
   background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+/* =========================================================
+   LIGHT / WHITE THEME STYLES
+   ========================================================= */
+
+html.light body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+html.light .navbar {
+  background: rgba(248, 250, 252, 0.88);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+html.light .navbar.scrolled {
+  background: rgba(248, 250, 252, 0.98);
+  border-bottom-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+html.light .card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+html.light .card:hover {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.16);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+html.light .btn-primary {
+  background: #090a0f;
+  color: #ffffff;
+  border-color: #090a0f;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+html.light .btn-primary:hover {
+  background: #1e293b;
+  color: #ffffff;
+}
+
+html.light .btn-secondary {
+  background: rgba(0, 0, 0, 0.04);
+  color: #0f172a;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+html.light .btn-secondary:hover {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.18);
+}
+
+html.light .btn-gitbook {
+  background: rgba(2, 132, 199, 0.08);
+  color: #0284c7;
+  border-color: rgba(2, 132, 199, 0.25);
+}
+
+html.light .btn-gitbook:hover {
+  background: rgba(2, 132, 199, 0.14);
+  border-color: rgba(2, 132, 199, 0.45);
+}
+
+html.light .tag {
+  background: rgba(0, 0, 0, 0.04);
+  color: #475569;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+html.light .tag:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: #0f172a;
+  border-color: rgba(0, 0, 0, 0.16);
+}
+
+html.light .form-input {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.14);
+  color: #090a0f;
+}
+
+html.light .form-input:focus {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
+}
+
+html.light .mobile-menu-drawer {
+  background: rgba(248, 250, 252, 0.98);
+}
+
+html.light .mobile-bottom-dock {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+html.light .dock-item {
+  color: #64748b;
+}
+
+html.light .dock-item.active {
+  color: #090a0f;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+html.light .status-badge {
+  background: rgba(16, 185, 129, 0.1);
+  color: #047857;
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+html.light .status-badge-neutral {
+  background: rgba(0, 0, 0, 0.04);
+  color: #475569;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Text and border utility adaptations for light theme */
+html.light .text-white {
+  color: #090a0f !important;
+}
+
+html.light .text-zinc-100 {
+  color: #090a0f !important;
+}
+
+html.light .text-zinc-200 {
+  color: #1e293b !important;
+}
+
+html.light .text-zinc-300 {
+  color: #334155 !important;
+}
+
+html.light .text-zinc-400 {
+  color: #64748b !important;
+}
+
+html.light .border-white\/\[0\.08\],
+html.light .border-white\/\[0\.06\],
+html.light .border-white\/\[0\.04\],
+html.light .border-white\/10,
+html.light .border-white\/15 {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+html.light .bg-white\/\[0\.02\],
+html.light .bg-white\/\[0\.03\],
+html.light .bg-white\/\[0\.04\],
+html.light .bg-white\/\[0\.05\],
+html.light .bg-white\/\[0\.06\],
+html.light .bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .bg-slate-950,
+html.light .bg-slate-950\/90,
+html.light .bg-slate-900,
+html.light .bg-slate-900\/90,
+html.light .bg-slate-900\/70,
+html.light .bg-slate-900\/60 {
+  background-color: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+html.light kbd {
+  background-color: #f1f5f9 !important;
+  border-color: rgba(0, 0, 0, 0.15) !important;
+  color: #334155 !important;
+}
+
+html.light .inline-code {
+  background: rgba(0, 0, 0, 0.05) !important;
+  color: #0284c7 !important;
+}
+
+html.light .theme-toggle-btn {
+  background: rgba(0, 0, 0, 0.04) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  color: #334155 !important;
+}
+
+html.light .theme-toggle-btn:hover {
+  background: rgba(0, 0, 0, 0.08) !important;
+  color: #090a0f !important;
+}
+
+html.light .markdown-body {
+  background-color: #ffffff !important;
+  color: #090a0f !important;
+}
+
+html.light dialog {
+  background-color: #ffffff !important;
+  color: #090a0f !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+html.light dialog::backdrop {
+  background: rgba(15, 23, 42, 0.45);
 }

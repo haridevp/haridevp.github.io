@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   Github, Linkedin, Instagram, Braces, Menu, X, Download,
   Briefcase, FolderGit2, BookOpen, Send, User, ExternalLink,
-  ArrowUpRight, Search, Shield, Terminal, Award
+  ArrowUpRight, Search, Shield, Terminal, Award, Sun, Moon
 } from 'lucide-react';
 import { USER_CONFIG } from '../data/config';
 
@@ -31,7 +31,7 @@ const SOCIAL_LINKS = [
   { href: USER_CONFIG.instagram, icon: Instagram, label: 'Instagram' }
 ];
 
-export default function Navbar({ onOpenCommandPalette }) {
+export default function Navbar({ onOpenCommandPalette, theme = 'dark', onToggleTheme }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('labs');
@@ -107,6 +107,23 @@ export default function Navbar({ onOpenCommandPalette }) {
 
         {/* Right Action Buttons */}
         <div className="hidden sm:flex items-center gap-2 flex-shrink-0">
+          {/* Theme Toggle Button (Black / White) */}
+          {onToggleTheme && (
+            <button
+              type="button"
+              onClick={onToggleTheme}
+              className="theme-toggle-btn flex items-center justify-center p-2 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-zinc-400 hover:text-white transition-all cursor-pointer"
+              title={theme === 'dark' ? 'Switch to White Theme (Light)' : 'Switch to Black Theme (Dark)'}
+              aria-label={theme === 'dark' ? 'Switch to White Theme (Light)' : 'Switch to Black Theme (Dark)'}
+            >
+              {theme === 'dark' ? (
+                <Sun size={14} className="text-amber-400 hover:rotate-45 transition-transform" />
+              ) : (
+                <Moon size={14} className="text-sky-600 hover:-rotate-12 transition-transform" />
+              )}
+            </button>
+          )}
+
           {onOpenCommandPalette && (
             <button
               type="button"
@@ -145,7 +162,23 @@ export default function Navbar({ onOpenCommandPalette }) {
         </div>
 
         {/* Mobile / Tablet Controls */}
-        <div className="flex items-center gap-2 sm:hidden">
+        <div className="flex items-center gap-1.5 sm:hidden">
+          {onToggleTheme && (
+            <button
+              type="button"
+              onClick={onToggleTheme}
+              className="theme-toggle-btn p-1.5 rounded-lg bg-white/[0.05] text-zinc-400 hover:text-white border border-white/10 cursor-pointer"
+              title={theme === 'dark' ? 'Switch to White Theme (Light)' : 'Switch to Black Theme (Dark)'}
+              aria-label={theme === 'dark' ? 'Switch to White Theme (Light)' : 'Switch to Black Theme (Dark)'}
+            >
+              {theme === 'dark' ? (
+                <Sun size={15} className="text-amber-400" />
+              ) : (
+                <Moon size={15} className="text-sky-600" />
+              )}
+            </button>
+          )}
+
           {onOpenCommandPalette && (
             <button
               type="button"
@@ -179,6 +212,17 @@ export default function Navbar({ onOpenCommandPalette }) {
 
         {/* Tablet Hamburger (visible between sm and lg: 640px - 1023px) */}
         <div className="hidden sm:flex lg:hidden items-center gap-2">
+          {onToggleTheme && (
+            <button
+              type="button"
+              onClick={onToggleTheme}
+              className="theme-toggle-btn p-2 rounded-lg bg-white/[0.04] border border-white/[0.08] text-zinc-400 hover:text-white cursor-pointer"
+              title={theme === 'dark' ? 'Switch to White Theme (Light)' : 'Switch to Black Theme (Dark)'}
+              aria-label={theme === 'dark' ? 'Switch to White Theme (Light)' : 'Switch to Black Theme (Dark)'}
+            >
+              {theme === 'dark' ? <Sun size={16} className="text-amber-400" /> : <Moon size={16} className="text-sky-600" />}
+            </button>
+          )}
           <button
             className="text-zinc-400 hover:text-white transition-colors p-2 rounded-lg cursor-pointer bg-white/[0.04] border border-white/[0.08]"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -215,7 +259,44 @@ export default function Navbar({ onOpenCommandPalette }) {
         })}
       </div>
 
-      <div className="space-y-3 pt-6 border-t border-white/10">
+      {/* Theme Selection Row */}
+      {onToggleTheme && (
+        <div className="pt-4 pb-1 border-t border-white/10">
+          <div className="flex items-center justify-between px-1">
+            <span className="text-xs font-mono uppercase tracking-wider text-zinc-400">Appearance</span>
+            <div className="inline-flex rounded-lg border border-white/10 p-0.5 bg-black/40">
+              <button
+                type="button"
+                onClick={() => theme !== 'dark' && onToggleTheme()}
+                className={`flex items-center gap-1.5 px-3 py-1 text-xs rounded-md font-medium transition-all cursor-pointer ${
+                  theme === 'dark'
+                    ? 'bg-white/20 text-white font-semibold shadow-sm'
+                    : 'text-zinc-400 hover:text-white'
+                }`}
+                aria-pressed={theme === 'dark'}
+              >
+                <Moon size={12} className={theme === 'dark' ? 'text-sky-300' : ''} />
+                <span>Black</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => theme !== 'light' && onToggleTheme()}
+                className={`flex items-center gap-1.5 px-3 py-1 text-xs rounded-md font-medium transition-all cursor-pointer ${
+                  theme === 'light'
+                    ? 'bg-white text-zinc-900 font-semibold shadow-sm'
+                    : 'text-zinc-400 hover:text-white'
+                }`}
+                aria-pressed={theme === 'light'}
+              >
+                <Sun size={12} className={theme === 'light' ? 'text-amber-500' : ''} />
+                <span>White</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="space-y-3 pt-4 border-t border-white/10">
         <a
           href={USER_CONFIG.gitbook}
           target="_blank"

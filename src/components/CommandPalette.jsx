@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
   Search, Terminal, ArrowRight, Download, Mail, BookOpen,
-  Github, Linkedin, Shield, FileText, Check, Copy, X, Key, ExternalLink
+  Github, Linkedin, Shield, FileText, Check, Copy, X, Key, ExternalLink,
+  Sun, Moon
 } from 'lucide-react';
 import { USER_CONFIG } from '../data/config';
 
-export default function CommandPalette({ isOpen, onClose }) {
+export default function CommandPalette({ isOpen, onClose, theme = 'dark', onToggleTheme }) {
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [toastMessage, setToastMessage] = useState('');
@@ -89,6 +90,23 @@ export default function CommandPalette({ isOpen, onClose }) {
             const el = document.getElementById('research');
             if (el) el.scrollIntoView({ behavior: 'smooth' });
             onClose();
+          }
+        }
+      ]
+    },
+    {
+      category: 'Appearance & Theme',
+      items: [
+        {
+          id: 'act-toggle-theme',
+          title: theme === 'dark' ? 'Switch to White Theme (Light)' : 'Switch to Black Theme (Dark)',
+          sub: `Currently in ${theme === 'dark' ? 'Black (Dark)' : 'White (Light)'} mode · Press Enter to toggle`,
+          icon: theme === 'dark' ? Sun : Moon,
+          action: () => {
+            if (onToggleTheme) {
+              onToggleTheme();
+              showToast(`Theme switched to ${theme === 'dark' ? 'White' : 'Black'}`);
+            }
           }
         }
       ]

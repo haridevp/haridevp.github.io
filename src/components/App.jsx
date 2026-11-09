@@ -24,6 +24,13 @@ const AdminPage = import.meta.env.DEV
   : null;
 
 export default function App() {
+  const [theme, setTheme] = useState(() => {
+    try {
+      return localStorage.getItem('theme') || 'dark'; // Black theme is default
+    } catch {
+      return 'dark';
+    }
+  });
   const [lastCommit, setLastCommit] = useState("Loading...");
   const [showAdmin, setShowAdmin] = useState(false);
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
@@ -32,6 +39,39 @@ export default function App() {
   const [activeLabTab, setActiveLabTab] = useState('c2'); // 'c2' | 'ad'
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPgp, setCopiedPgp] = useState(false);
+
+  // Sync theme with DOM, localStorage, and meta color-scheme
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'light') {
+      root.classList.remove('dark');
+      root.classList.add('light');
+      root.setAttribute('data-theme', 'light');
+      try {
+        localStorage.setItem('theme', 'light');
+      } catch (err) {
+        void err;
+      }
+    } else {
+      root.classList.remove('light');
+      root.classList.add('dark');
+      root.setAttribute('data-theme', 'dark');
+      try {
+        localStorage.setItem('theme', 'dark');
+      } catch (err) {
+        void err;
+      }
+    }
+
+    const meta = document.querySelector('meta[name="color-scheme"]');
+    if (meta) {
+      meta.setAttribute('content', theme === 'dark' ? 'dark' : 'light');
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   const toggleProjectExpand = (idx) => {
     setExpandedProjects(prev => ({
@@ -120,12 +160,18 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-zinc-100 selection:bg-sky-500/30 selection:text-sky-100">
       {/* Navigation & Header */}
-      <Navbar onOpenCommandPalette={() => setCommandPaletteOpen(true)} />
+      <Navbar
+        onOpenCommandPalette={() => setCommandPaletteOpen(true)}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+      />
 
       {/* Global Command Palette */}
       <CommandPalette
         isOpen={commandPaletteOpen}
         onClose={() => setCommandPaletteOpen(false)}
+        theme={theme}
+        onToggleTheme={toggleTheme}
       />
 
       {/* =========================================================
