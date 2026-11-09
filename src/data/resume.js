@@ -59,6 +59,7 @@ export const RESUME_DATA = {
       releaseLink: "https://github.com/haridevp/Stealth-C2/releases/tag/v1.0",
       status: "v1.0 Release",
       badge: "v1.0 Release",
+      category: "offsec",
       mitreTactic: "Command & Control (TA0011)",
       details: [
         "Built a modular red team C2 framework tunnelling AES-256-GCM encrypted traffic over the Discord API to blend with legitimate HTTPS traffic and bypass firewall egress restrictions.",
@@ -72,6 +73,7 @@ export const RESUME_DATA = {
       link: "https://github.com/haridevp/Enterprise-AD-Attack-Lab",
       status: "Lab Simulation",
       badge: "Attack Simulation",
+      category: "offsec",
       mitreTactic: "Privilege Escalation & Lateral Movement",
       details: [
         "Built a 4-machine virtual enterprise environment (Windows Server 2022 DC, 2 Windows 11 workstations, Kali attacker) simulating a real-world corporate network for adversary simulation.",
@@ -85,6 +87,7 @@ export const RESUME_DATA = {
       link: "https://github.com/haridevp/AI-Automated-Pentesting-Framework",
       status: "Active R&D",
       badge: "Conference Track 2026",
+      category: "offsec",
       mitreTactic: "Recon & Weaponization (TA0043/TA0001)",
       details: [
         "Building a RAG-based pentesting assistant (team of 4) that retrieves contextual CVE data and attack patterns to generate adaptive, behaviour-driven engagement plans against live targets.",
@@ -99,10 +102,53 @@ export const RESUME_DATA = {
       liveLink: "https://haridevp.dev/Alumini_Connect/",
       status: "Live Platform",
       badge: "Cryptographic Architecture",
+      category: "offsec",
       mitreTactic: "Defense & Cryptographic Verification",
       details: [
         "Built a 3-role RBAC networking platform with AES-256-GCM encryption via Web Crypto API (server stores only ciphertext and IV) and NIST SP 800-63-2 compliant auth – SHA-256 salted hashing, MFA (Email OTP), Level of Assurance 2.",
         "Enforced tamper-evident job referrals via SHA-256 digital signatures and end-to-end HTTPS; deployed live with frontend on GitHub Pages and backend on Render."
+      ]
+    },
+    {
+      title: "CollabCanvas — Real-Time Collaborative Canvas",
+      tech: "React, Node.js, Socket.io, Fabric.js, MongoDB",
+      period: "2025",
+      link: "https://github.com/haridevp/CollabCanvas",
+      status: "Open Source",
+      badge: "6 GitHub Stars",
+      category: "systems",
+      mitreTactic: "Real-Time Systems & WebSockets",
+      details: [
+        "Engineered an infinite collaborative digital canvas supporting multi-user simultaneous drawing with live mouse cursor tracking, room-based private sessions, and sub-50ms WebSocket state synchronization.",
+        "Implemented a comprehensive layer management system (reordering, locking, hiding), JWT-authenticated user management, and client-side vector export (PNG/SVG)."
+      ]
+    },
+    {
+      title: "Distributed Key-Value Store",
+      tech: "Go, net/rpc, Docker, JSON Engine",
+      period: "2025",
+      link: "https://github.com/haridevp/distributed-kv-project",
+      status: "Architecture Prototype",
+      badge: "Go Systems",
+      category: "systems",
+      mitreTactic: "Distributed Systems & RPC",
+      details: [
+        "Built a distributed key-value storage engine in Go utilizing standard net/rpc for high-throughput inter-node remote procedure calls.",
+        "Designed peer-to-peer replication across a multi-node cluster with broadcast protocols, disk-backed JSON persistence, and automated multi-container LAN simulations."
+      ]
+    },
+    {
+      title: "Blockchain Consensus Explorer",
+      tech: "React, Vite, Tailwind CSS, Recharts",
+      period: "2025",
+      link: "https://github.com/haridevp/consensus-explorer",
+      status: "Interactive Tool",
+      badge: "Consensus Analysis",
+      category: "systems",
+      mitreTactic: "Cryptographic Consensus",
+      details: [
+        "Developed an interactive analytical dashboard modeling and comparing 8 blockchain consensus mechanisms (PoW, PoS, DPoS, PBFT, Raft, Paxos, PoA) across security resilience, trilemma metrics, and fault tolerance.",
+        "Architected a data-driven model mapping real-world L1/L2 networks with dynamic visual radar charts and trilemma trade-off evaluations."
       ]
     }
   ],
@@ -119,40 +165,102 @@ export const RESUME_DATA = {
   ],
   skills: [
     {
-      category: "Offensive Security & Concepts",
-      items: ["Penetration Testing", "Red Teaming", "C2 Infrastructure", "Active Directory Exploitation", "Adversary Emulation", "Post-Exploitation", "Privilege Escalation", "Network Enumeration", "Malware Analysis"]
+      category: "Offensive Security & Red Teaming",
+      items: [
+        "Active Directory Exploitation",
+        "Command & Control (C2) Architecture",
+        "Adversary Emulation (MITRE ATT&CK)",
+        "Kerberoasting & AS-REP Roasting",
+        "LLMNR/NBT-NS Poisoning",
+        "Pass-the-Hash & SMB Relay",
+        "DCSync & BloodHound Auditing",
+        "Post-Exploitation Tradecraft",
+        "Anti-Analysis & Sandbox Evasion",
+        "Malware Analysis Fundamentals"
+      ]
     },
     {
-      category: "Security Tools",
-      items: ["Nmap", "Burp Suite", "Wireshark", "Impacket", "John the Ripper", "Metasploit", "BloodHound"]
+      category: "Security & Penetration Testing Tools",
+      items: [
+        "Impacket Suite",
+        "Burp Suite Professional",
+        "BloodHound",
+        "Nmap",
+        "Wireshark",
+        "Metasploit Framework",
+        "Responder",
+        "John the Ripper / Hashcat",
+        "Mimikatz"
+      ]
     },
     {
-      category: "Languages & Scripting",
-      items: ["Python", "C++", "SQL", "Bash", "JavaScript", "HTML/CSS"]
+      category: "Systems & Programming Languages",
+      items: [
+        "Python (Offensive Tooling)",
+        "C++ (Systems Programming)",
+        "Go (net/rpc & Distributed Systems)",
+        "Bash & PowerShell Scripting",
+        "SQL (PostgreSQL)",
+        "JavaScript / TypeScript",
+        "HTML/CSS & React"
+      ]
     },
     {
-      category: "Systems & Infrastructure",
-      items: ["Linux (Kali, Fedora)", "Windows Server 2022", "Active Directory", "Docker", "Git"]
+      category: "Operating Systems & Infrastructure",
+      items: [
+        "Kali Linux & Fedora Linux",
+        "Windows Server 2022 (Domain Services)",
+        "Active Directory Lab Topology",
+        "Docker & Containerization",
+        "Git & CI/CD",
+        "ChromaDB & Celery"
+      ]
+    }
+  ],
+  platforms: [
+    {
+      name: "TryHackMe",
+      handle: "ArtemizZ",
+      stat: "Top 30% Globally",
+      profileUrl: "https://tryhackme.com/p/ArtemizZ",
+      highlight: "24-Day Advent of Cyber Series Completed"
     },
     {
-      category: "Platforms & Practice",
-      items: ["TryHackMe (ArtemizZ – Top 30%)", "Hack The Box (Level 12 – 13 machines, Guided Tracks Tier 0–2)"]
+      name: "Hack The Box",
+      handle: "haridevp",
+      stat: "Level 12 • 13 Machines Rooted",
+      profileUrl: "https://app.hackthebox.com",
+      highlight: "Guided Tracks Tier 0–2 Completed"
     }
   ],
   certifications: [
     {
-      name: "Google Cybersecurity Certificate",
-      issuer: "Coursera",
+      name: "Google Cybersecurity Professional Certificate",
+      issuer: "Coursera / Google",
       date: "Nov 2024",
       credentialUrl: "https://www.credly.com/badges/1aadb2c4-5166-4838-b412-8a212812a645",
       details: ["Comprehensive foundation across SIEM, packet analysis, intrusion detection, and incident response."]
     },
     {
-      name: "TryHackMe – Advent of Cyber",
+      name: "Advent of Cyber 2025 Certificate",
       issuer: "TryHackMe",
       date: "Dec 2025",
-      credentialUrl: "https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-H7HOUQW3FU.pdf",
-      details: ["Offensive & defensive CTF exercises covering memory analysis, log forensics, web app exploits, and network enumeration."]
+      credentialUrl: "https://tryhackme.com/p/ArtemizZ",
+      details: ["24 days of hands-on security challenges covering Web, Reverse Engineering, Forensics, and AD."]
+    },
+    {
+      name: "Google Cloud Computing Foundations",
+      issuer: "Google Cloud / Credly",
+      date: "2023",
+      credentialUrl: "https://www.credly.com/badges/e9868959-964f-4194-b640-77d4b54ac790/",
+      details: ["Cloud infrastructure, networking, identity management, and security fundamentals."]
+    },
+    {
+      name: "Google Cloud Skills Boost",
+      issuer: "Google Developers",
+      date: "Active",
+      credentialUrl: "https://www.cloudskillsboost.google/public_profiles/85843ac3-3173-4aa4-85bc-5e02126aa3cb",
+      details: ["Demonstrated competency in cloud architecture and security modules."]
     }
   ]
 };

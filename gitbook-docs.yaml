@@ -1,0 +1,11 @@
+$schema: https://api.gitbook.com/gitbook-docs.yaml
+site:
+  title: haridev
+  structure:
+    - type: space
+      key: space-security-notes
+      title: Security Research & Notes
+      path: haridev
+      default: true
+      content:
+        directory: ./src/gitbook
