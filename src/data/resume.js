@@ -221,16 +221,16 @@ export const RESUME_DATA = {
     {
       name: "TryHackMe",
       handle: "ArtemizZ",
-      stat: "Top 30% Globally",
+      stat: "24 Writeups Documented",
       profileUrl: "https://tryhackme.com/p/ArtemizZ",
       highlight: "24-Day Advent of Cyber Series Completed"
     },
     {
       name: "Hack The Box",
       handle: "haridevp",
-      stat: "Level 12 • 13 Machines Rooted",
+      stat: "Level 12 • 13 Boxes",
       profileUrl: "https://app.hackthebox.com",
-      highlight: "Guided Tracks Tier 0–2 Completed"
+      highlight: "Level 12 · 13 Boxes"
     }
   ],
   certifications: [

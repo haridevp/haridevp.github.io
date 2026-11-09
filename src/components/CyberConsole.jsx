@@ -41,7 +41,7 @@ const COMMANDS = {
       `    • Offensive: Active Directory Exploitation, C2 Infra, Post-Exploitation, Red Teaming`,
       `    • Tooling  : Impacket, BloodHound, Burp Suite, Nmap, Wireshark, Metasploit`,
       `    • Systems  : Linux (Kali, Fedora), Windows Server 2022, Active Directory`,
-      `    • Ranks    : TryHackMe (ArtemizZ - Top 30%) | HTB (Level 12 - 13 Machines)`
+      `    • Profiles : TryHackMe (ArtemizZ - 24 Writeups) | HTB (Level 12 - 13 Boxes)`
     ]
   },
   mitre: {

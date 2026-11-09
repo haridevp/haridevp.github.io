@@ -254,13 +254,13 @@ export default function App() {
             </div>
             <div className="p-3.5 rounded-lg bg-white/[0.02] border border-white/[0.06]">
               <div className="text-[11px] font-mono text-zinc-500 uppercase">TryHackMe</div>
-              <div className="font-semibold text-sm text-emerald-400 mt-0.5">Top 30% Globally</div>
-              <div className="text-[11px] text-zinc-500 mt-0.5">24 Writeups Documented</div>
+              <div className="font-semibold text-sm text-emerald-400 mt-0.5">24 Writeups</div>
+              <div className="text-[11px] text-zinc-500 mt-0.5">Advent of Cyber Series</div>
             </div>
             <div className="p-3.5 rounded-lg bg-white/[0.02] border border-white/[0.06]">
               <div className="text-[11px] font-mono text-zinc-500 uppercase">Hack The Box</div>
-              <div className="font-semibold text-sm text-sky-400 mt-0.5">Level 12 • 13 Roots</div>
-              <div className="text-[11px] text-zinc-500 mt-0.5">Guided Tracks Tier 0–2</div>
+              <div className="font-semibold text-sm text-sky-400 mt-0.5">Level 12</div>
+              <div className="text-[11px] text-zinc-500 mt-0.5">13 Boxes Rooted</div>
             </div>
             <div className="p-3.5 rounded-lg bg-white/[0.02] border border-white/[0.06]">
               <div className="text-[11px] font-mono text-zinc-500 uppercase">Publications</div>
@@ -744,7 +744,7 @@ export default function App() {
                     <div>
                       <div className="text-xs font-semibold text-white">TryHackMe</div>
                       <div className="text-[11px] font-mono text-zinc-400 mt-0.5">
-                        User: ArtemizZ (Top 30%)
+                        User: ArtemizZ · 24 Writeups
                       </div>
                     </div>
                     <a
@@ -761,7 +761,7 @@ export default function App() {
                     <div>
                       <div className="text-xs font-semibold text-white">Hack The Box</div>
                       <div className="text-[11px] font-mono text-zinc-400 mt-0.5">
-                        Level 12 • 13 Machines
+                        Level 12 · 13 Boxes
                       </div>
                     </div>
                     <a

@@ -161,7 +161,7 @@ export default function CommandPalette({ isOpen, onClose, theme = 'dark', onTogg
         {
           id: 'act-open-thm',
           title: 'TryHackMe Profile',
-          sub: 'ArtemizZ (Top 30% Globally)',
+          sub: 'ArtemizZ · 24 Writeups Documented',
           icon: ExternalLink,
           action: () => {
             window.open(USER_CONFIG.thmProfile, '_blank');

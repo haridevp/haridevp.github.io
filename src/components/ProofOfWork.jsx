@@ -29,7 +29,7 @@ export default function ProofOfWork() {
               </a>
             </div>
             <h4 className="text-lg font-bold text-white mb-1">
-              Top 30% Worldwide Ranking
+              24 Writeups Documented
             </h4>
             <p className="text-xs text-zinc-300 leading-relaxed mb-4">
               Active practitioner on TryHackMe. Successfully solved and documented all 24 days of the Advent of Cyber 2025 challenge series covering Linux forensics, reverse engineering, web exploitation, and Active Directory paths.
@@ -60,15 +60,15 @@ export default function ProofOfWork() {
               </a>
             </div>
             <h4 className="text-lg font-bold text-white mb-1">
-              13 Machines Rooted
+              Level 12 · 13 Boxes
             </h4>
             <p className="text-xs text-zinc-300 leading-relaxed mb-4">
-              Hands-on lab exploitation across Linux and Windows systems. Completed Guided Tracks Tier 0–2 spanning network enumeration, privilege escalation vectors, binary inspection, and initial foothold acquisition.
+              Hands-on lab exploitation across Linux and Windows systems spanning network enumeration, privilege escalation vectors, binary inspection, and initial foothold acquisition.
             </p>
           </div>
 
           <div className="pt-3 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-zinc-400">
-            <span>Guided Tracks Tier 0–2</span>
+            <span>Level 12 · 13 Boxes</span>
             <span className="text-sky-400 font-semibold">Active OffSec Lab Work ✓</span>
           </div>
         </div>

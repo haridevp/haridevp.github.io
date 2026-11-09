@@ -65,13 +65,12 @@ At **ASTRA Lab (CyStar), IIT Madras**, I contribute to **CipherC2**—a research
 
 ---
 
-### 🏆 Verified Security Handles & Competitive Rankings
+### 🏆 Verified Security Handles
 
-* **TryHackMe**: [`ArtemizZ`](https://tryhackme.com/p/ArtemizZ) — **Top 30% Globally**
+* **TryHackMe**: [`ArtemizZ`](https://tryhackme.com/p/ArtemizZ) — **24 Writeups Documented**
   * Completed and documented all 24 days of Advent of Cyber 2025.
-  * Guided learning paths completed across offensive Linux, Windows forensics, and network analysis.
-* **Hack The Box**: [`Level 12`](https://app.hackthebox.com/profile/1381393)
-  * 13 rooted machines across Linux and Windows enterprise paths (Tier 0 to Tier 2).
+* **Hack The Box**: [`Level 12`](https://app.hackthebox.com/profile/1381393) — **Level 12 · 13 Boxes**
+  * 13 rooted boxes across Linux and Windows enterprise paths.
 * **Google Developers**: [Haridev P Developer Profile](https://g.dev/haridevp)
 
 ---

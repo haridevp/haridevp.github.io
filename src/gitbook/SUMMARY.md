@@ -3,35 +3,17 @@
 * [👋 Welcome](README.md)
 * [👤 About Me](welcome/about-me.md)
 
-## 🛡️ Active Directory Exploitation
-* [Architecture & Attack Lifecycle](ad/active-directory.md)
-* [Kerberoasting & AS-REP Roasting](ad/kerberoasting.md)
-* [Lateral Movement & Relaying](ad/lateral-movement.md)
-* [AD CS Certificate Attacks](ad/adcs-attacks.md)
-* [ACL & GPO Exploitation](ad/acl-gpo-abuse.md)
-
-## ⚡ Covert C2 & Adversary Emulation
-* [Adversary Emulation Overview](c2/adversary-emulation.md)
+## ⚡ Offensive Security Labs & Tooling
+* [Enterprise AD Attack Lab](ad/active-directory.md)
 * [Stealth-C2 v1.0 Blueprint](c2/stealth-c2.md)
 * [CipherC2 Research Initiative](c2/cipher-c2.md)
 
-## 🔍 Defense Evasion & Internals
-* [Defense Evasion Strategies](evasion/defence-evasion.md)
-* [AMSI & ETW In-Memory Patching](evasion/amsi-etw-patching.md)
-* [Anti-Analysis & Kill Switches](evasion/anti-analysis.md)
+## 🔬 Systems & AI Research
+* [Autonomous Aerial Navigation (Springer LNNS)](research/autonomous-navigation.md)
+* [Distributed Key-Value Store in Go](research/distributed-systems.md)
 
-## 🌐 Network Pivoting & Tunneling
-* [Network Pivoting Playbook](pivoting/pivoting-guide.md)
-
-## 🛠️ Operator Toolkits & Cheatsheets
-* [NetExec (nxc) Cheatsheet](toolkits/netexec-cheatsheet.md)
-* [Impacket Reference Manual](toolkits/impacket-reference.md)
-* [Windows Privilege Escalation](toolkits/privilege-escalation.md)
-* [Linux Privilege Escalation](toolkits/linux-privesc.md)
-* [Offensive Security Cheatsheet](toolkits/cheat-sheet.md)
-
-## 🎯 Capture The Flag & Labs
-* [TryHackMe: Advent of Cyber 2025](writeups/advent-of-cyber/README.md)
+## 🎯 Challenge Writeups & Labs
+* [TryHackMe: Advent of Cyber (24 Writeups)](writeups/advent-of-cyber/README.md)
   * [Day 01: Linux Fundamentals](writeups/advent-of-cyber/day-1.md)
   * [Day 02: Phishing Analysis](writeups/advent-of-cyber/day-2.md)
   * [Day 03: Splunk Basics](writeups/advent-of-cyber/day-3.md)
@@ -56,8 +38,4 @@
   * [Day 22: Binary Exploitation](writeups/advent-of-cyber/day-22.md)
   * [Day 23: Red Teaming Tradecraft](writeups/advent-of-cyber/day-23.md)
   * [Day 24: Capstone Exploitation](writeups/advent-of-cyber/day-24.md)
-* [Hack The Box Methodology](writeups/hack-the-box.md)
-
-## 🔬 Systems & AI Research
-* [Autonomous Navigation (Springer LNNS)](research/autonomous-navigation.md)
-* [Distributed Key-Value Store in Go](research/distributed-systems.md)
+* [Hack The Box (Level 12 · 13 Boxes)](writeups/hack-the-box.md)

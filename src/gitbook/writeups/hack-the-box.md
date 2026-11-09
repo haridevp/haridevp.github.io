@@ -1,7 +1,7 @@
 # 📦 Hack The Box Methodology & Root Walkthroughs
 
 > **Platform**: [Hack The Box Profile](https://app.hackthebox.com/profile/1381393)  
-> **Handle**: `Level 12` · 13 Machines Rooted  
+> **Handle**: `Level 12` · 13 Boxes Rooted  
 > **Specialization**: Linux internals, Windows Active Directory, service enumeration
 
 ---
