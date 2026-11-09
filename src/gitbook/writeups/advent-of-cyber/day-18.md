@@ -1,6 +1,6 @@
 ---
 id: 18
-title: Advent of Cyber 2025: Day 18
+title: "Advent of Cyber 2025: Day 18"
 date: 2025-12-18
 category: CTF
 difficulty: Medium

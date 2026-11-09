@@ -1,6 +1,6 @@
 ---
 id: 7
-title: Advent of Cyber 2025: Day 7
+title: "Advent of Cyber 2025: Day 7"
 date: 2025-12-07
 category: CTF
 difficulty: Medium

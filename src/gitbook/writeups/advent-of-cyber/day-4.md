@@ -1,6 +1,6 @@
 ---
 id: 4
-title: AoC 2025 Day 4 - AI & SQLi
+title: "AoC 2025 Day 4 - AI & SQLi"
 date: 2025-12-04
 category: CTF
 difficulty: Easy

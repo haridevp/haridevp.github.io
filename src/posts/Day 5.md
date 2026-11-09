@@ -1,6 +1,6 @@
 ---
 id: 5
-title: Advent of Cyber 2025 - Day 5
+title: "Advent of Cyber 2025 - Day 5"
 date: 2025-12-06
 category: TryHackMe
 difficulty: Easy

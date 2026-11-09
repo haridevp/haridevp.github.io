@@ -1,6 +1,6 @@
 ---
 id: 1
-title: Advent of Cyber 2025 - Day 1 Walkthrough
+title: "Advent of Cyber 2025 - Day 1 Walkthrough"
 date: 2025-12-01
 category: TryHackMe
 difficulty: Easy

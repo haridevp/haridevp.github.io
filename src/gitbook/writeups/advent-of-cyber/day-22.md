@@ -1,6 +1,6 @@
 ---
 id: 22
-title: Advent of Cyber 2025: Day 22
+title: "Advent of Cyber 2025: Day 22"
 date: 2025-12-22
 category: CTF
 difficulty: Medium

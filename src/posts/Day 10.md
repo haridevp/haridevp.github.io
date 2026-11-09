@@ -1,6 +1,6 @@
 ---
 id: 10
-title: Advent of Cyber 2025: Day 10
+title: "Advent of Cyber 2025: Day 10"
 date: 2025-12-10
 category: CTF
 difficulty: Medium

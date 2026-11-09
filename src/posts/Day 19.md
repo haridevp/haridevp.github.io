@@ -1,6 +1,6 @@
 ---
 id: 19
-title: Advent of Cyber 2025: Day 19
+title: "Advent of Cyber 2025: Day 19"
 date: 2025-12-19
 category: CTF
 difficulty: Medium

@@ -1,6 +1,6 @@
 ---
 id: 13
-title: Advent of Cyber 2025: Day 13
+title: "Advent of Cyber 2025: Day 13"
 date: 2025-12-13
 category: CTF
 difficulty: Medium

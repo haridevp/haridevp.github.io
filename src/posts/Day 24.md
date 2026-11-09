@@ -1,6 +1,6 @@
 ---
 id: 24
-title: Advent of Cyber 2025: Day 24
+title: "Advent of Cyber 2025: Day 24"
 date: 2025-12-24
 category: CTF
 difficulty: Easy

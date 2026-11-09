@@ -1,6 +1,6 @@
 ---
 id: 2
-title: AoC Day 2: Phishing for Passwords
+title: "AoC Day 2: Phishing for Passwords"
 date: 2025-12-02
 category: TryHackMe
 difficulty: Easy

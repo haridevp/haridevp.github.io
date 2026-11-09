@@ -1,6 +1,6 @@
 ---
 id: 14
-title: Advent of Cyber 2025: Day 14
+title: "Advent of Cyber 2025: Day 14"
 date: 2025-12-14
 category: CTF
 difficulty: Medium
