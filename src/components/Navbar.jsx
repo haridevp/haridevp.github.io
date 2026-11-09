@@ -7,11 +7,11 @@ import {
 import { USER_CONFIG } from '../data/config';
 
 const NAV_ITEMS = [
-  { id: 'labs', label: 'Interactive Labs' },
+  { id: 'labs', label: 'Labs' },
   { id: 'projects', label: 'Projects' },
   { id: 'experience', label: 'Experience' },
   { id: 'writeups', label: 'Writeups' },
-  { id: 'proof', label: 'Proof & Talks' },
+  { id: 'proof', label: 'Proof' },
   { id: 'about', label: 'Capabilities' },
   { id: 'contact', label: 'Contact' }
 ];
@@ -61,34 +61,42 @@ export default function Navbar({ onOpenCommandPalette }) {
     setMobileOpen(false);
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const headerOffset = 76;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
   return (
     <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
         {/* Minimalist Logo / Identity */}
         <a
           href="#"
           onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-          className="group flex items-center gap-2.5 text-sm font-semibold tracking-tight text-white hover:opacity-90 transition-opacity"
+          className="group flex items-center gap-2 text-sm font-semibold tracking-tight text-white hover:opacity-90 transition-opacity flex-shrink-0"
         >
-          <span className="h-2 w-2 rounded-full bg-emerald-400" />
+          <span className="h-2 w-2 rounded-full bg-emerald-400 flex-shrink-0" />
           <span className="font-mono text-zinc-100 font-semibold tracking-tight">haridev.p</span>
-          <span className="text-xs font-mono text-zinc-500 font-normal hidden lg:inline">
+          <span className="text-xs font-mono text-zinc-500 font-normal hidden 2xl:inline">
             / offsec & systems
           </span>
         </a>
 
-        {/* Desktop Nav Items */}
-        <nav aria-label="Main Navigation" className="hidden md:flex items-center gap-5 lg:gap-6">
+        {/* Desktop Nav Items (visible on lg: 1024px and up, preventing any collision with logo or buttons) */}
+        <nav aria-label="Main Navigation" className="hidden lg:flex items-center gap-1 xl:gap-2 flex-shrink min-w-0">
           {NAV_ITEMS.map(item => (
             <button
               key={item.id}
               onClick={() => handleNavClick(item.id)}
-              className={`nav-link text-xs lg:text-sm font-medium transition-colors cursor-pointer ${
-                activeSection === item.id ? 'text-white font-semibold' : 'text-zinc-400 hover:text-zinc-200'
+              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors cursor-pointer whitespace-nowrap ${
+                activeSection === item.id
+                  ? 'text-white bg-white/10 font-semibold'
+                  : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
               }`}
             >
               {item.label}
@@ -97,13 +105,12 @@ export default function Navbar({ onOpenCommandPalette }) {
         </nav>
 
         {/* Right Action Buttons */}
-        <div className="hidden md:flex items-center gap-2.5">
-          {/* Quick Command Palette Trigger */}
+        <div className="hidden sm:flex items-center gap-2 flex-shrink-0">
           {onOpenCommandPalette && (
             <button
               type="button"
               onClick={onOpenCommandPalette}
-              className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-xs font-mono text-zinc-400 hover:text-white transition-all cursor-pointer"
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-xs font-mono text-zinc-400 hover:text-white transition-all cursor-pointer whitespace-nowrap"
               title="Open command palette (Ctrl+K or ⌘K)"
             >
               <Search size={13} />
@@ -118,7 +125,7 @@ export default function Navbar({ onOpenCommandPalette }) {
             href={USER_CONFIG.gitbook}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-gitbook text-xs py-1.5 px-3 flex items-center gap-1.5"
+            className="btn-gitbook text-xs py-1.5 px-3 flex items-center gap-1.5 whitespace-nowrap"
             title="Read writeups & research on GitBook"
           >
             <BookOpen size={13} />
@@ -129,30 +136,15 @@ export default function Navbar({ onOpenCommandPalette }) {
           <a
             href="/Resume.pdf"
             download="Haridev_P_Resume.pdf"
-            className="btn-secondary text-xs py-1.5 px-3 flex items-center gap-1.5"
+            className="btn-secondary text-xs py-1.5 px-3 flex items-center gap-1.5 whitespace-nowrap"
           >
             <Download size={13} />
             <span>Resume</span>
           </a>
-
-          <div className="h-4 w-px bg-white/10 mx-0.5" />
-
-          {SOCIAL_LINKS.map(link => (
-            <a
-              key={link.label}
-              href={link.href}
-              target="_blank"
-              rel="noreferrer"
-              className="text-zinc-400 hover:text-white transition-colors p-1"
-              aria-label={link.label}
-            >
-              <link.icon size={15} />
-            </a>
-          ))}
         </div>
 
-        {/* Mobile Actions */}
-        <div className="flex items-center gap-2 md:hidden">
+        {/* Mobile / Tablet Controls */}
+        <div className="flex items-center gap-2 sm:hidden">
           {onOpenCommandPalette && (
             <button
               type="button"
@@ -168,7 +160,7 @@ export default function Navbar({ onOpenCommandPalette }) {
             href={USER_CONFIG.gitbook}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-gitbook text-xs py-1 px-2.5 flex items-center gap-1"
+            className="btn-gitbook text-xs py-1 px-2.5 flex items-center gap-1 whitespace-nowrap"
           >
             <BookOpen size={12} />
             <span>GitBook</span>
@@ -176,16 +168,27 @@ export default function Navbar({ onOpenCommandPalette }) {
           </a>
 
           <button
-            className="text-zinc-400 hover:text-white transition-colors p-2 rounded-lg"
+            className="text-zinc-400 hover:text-white transition-colors p-2 rounded-lg cursor-pointer"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle navigation menu"
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
+
+        {/* Tablet Hamburger (visible between sm and lg: 640px - 1023px) */}
+        <div className="hidden sm:flex lg:hidden items-center gap-2">
+          <button
+            className="text-zinc-400 hover:text-white transition-colors p-2 rounded-lg cursor-pointer bg-white/[0.04] border border-white/[0.08]"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle navigation menu"
+          >
+            {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Slide-Out Drawer */}
+      {/* Slide-Out Drawer (Mobile & Tablet) */}
       <div className={`mobile-menu-drawer ${mobileOpen ? 'open' : ''}`}>
         <div className="flex flex-col gap-3 pt-4">
           <div className="text-xs font-mono tracking-wider text-zinc-400 uppercase pb-2 border-b border-white/10">
@@ -197,10 +200,10 @@ export default function Navbar({ onOpenCommandPalette }) {
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`flex items-center justify-between text-left py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                className={`flex items-center justify-between text-left py-2.5 px-3 rounded-lg text-sm font-medium transition-colors cursor-pointer ${
                   isActive
                     ? 'text-white bg-white/10 font-semibold'
-                    : 'text-zinc-400 hover:text-white'
+                    : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
                 }`}
               >
                 <span>{item.label}</span>
@@ -257,7 +260,7 @@ export default function Navbar({ onOpenCommandPalette }) {
             <button
               key={item.id}
               onClick={() => handleNavClick(item.id)}
-              className={`dock-item ${isActive ? 'active' : ''}`}
+              className={`dock-item cursor-pointer ${isActive ? 'active' : ''}`}
               aria-label={`Scroll to ${item.label}`}
             >
               <Icon size={15} />

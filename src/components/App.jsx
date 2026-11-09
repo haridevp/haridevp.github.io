@@ -225,13 +225,13 @@ export default function App() {
         </div>
       </header>
 
-      <main>
+      <main className="pb-28 md:pb-12">
         {/* =========================================================
             INTERACTIVE LABS SECTION (Stealth-C2 & Active Directory Lab)
             ========================================================= */}
         <Section id="labs" className="border-b border-white/[0.08]">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
-            <div>
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+            <div className="max-w-xl">
               <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-mono text-sky-400 bg-sky-500/10 border border-sky-500/20 mb-2">
                 <Terminal size={12} />
                 <span>Hands-on Engineering Architecture</span>
@@ -243,11 +243,11 @@ export default function App() {
             </div>
 
             {/* Lab Switcher Buttons */}
-            <div className="flex items-center gap-2 p-1 bg-white/[0.04] border border-white/[0.08] rounded-xl self-start md:self-auto">
+            <div className="flex items-center gap-1.5 p-1 bg-white/[0.04] border border-white/[0.08] rounded-xl self-start sm:self-auto flex-shrink-0">
               <button
                 type="button"
                 onClick={() => setActiveLabTab('c2')}
-                className={`text-xs font-mono px-3.5 py-1.5 rounded-lg transition-all cursor-pointer ${
+                className={`text-xs font-mono px-3.5 py-1.5 rounded-lg transition-all cursor-pointer whitespace-nowrap ${
                   activeLabTab === 'c2'
                     ? 'bg-sky-500/20 text-white font-semibold shadow-sm'
                     : 'text-zinc-400 hover:text-white'
@@ -258,7 +258,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => setActiveLabTab('ad')}
-                className={`text-xs font-mono px-3.5 py-1.5 rounded-lg transition-all cursor-pointer ${
+                className={`text-xs font-mono px-3.5 py-1.5 rounded-lg transition-all cursor-pointer whitespace-nowrap ${
                   activeLabTab === 'ad'
                     ? 'bg-indigo-500/20 text-white font-semibold shadow-sm'
                     : 'text-zinc-400 hover:text-white'
@@ -286,7 +286,7 @@ export default function App() {
             ========================================================= */}
         <Section id="projects" className="border-b border-white/[0.08]">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
-            <div>
+            <div className="max-w-xl">
               <h2 className="section-title">Selected Projects</h2>
               <p className="section-subtitle">
                 Adversary simulation frameworks, distributed key-value storage in Go, and cryptographic architectures.
@@ -294,11 +294,11 @@ export default function App() {
             </div>
 
             {/* Category Filter Pills */}
-            <div className="flex items-center gap-1.5 bg-white/[0.03] p-1 rounded-lg border border-white/[0.06] self-start sm:self-auto">
+            <div className="flex flex-wrap items-center gap-1.5 bg-white/[0.03] p-1 rounded-lg border border-white/[0.06] self-start sm:self-auto flex-shrink-0">
               <button
                 type="button"
                 onClick={() => setActiveProjectFilter('all')}
-                className={`text-xs font-mono px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                className={`text-xs font-mono px-2.5 py-1 rounded transition-colors cursor-pointer whitespace-nowrap ${
                   activeProjectFilter === 'all'
                     ? 'bg-white/10 text-white font-medium'
                     : 'text-zinc-400 hover:text-white'
@@ -309,7 +309,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => setActiveProjectFilter('offsec')}
-                className={`text-xs font-mono px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                className={`text-xs font-mono px-2.5 py-1 rounded transition-colors cursor-pointer whitespace-nowrap ${
                   activeProjectFilter === 'offsec'
                     ? 'bg-sky-500/20 text-sky-300 font-medium'
                     : 'text-zinc-400 hover:text-white'
@@ -320,7 +320,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => setActiveProjectFilter('systems')}
-                className={`text-xs font-mono px-2.5 py-1 rounded transition-colors cursor-pointer ${
+                className={`text-xs font-mono px-2.5 py-1 rounded transition-colors cursor-pointer whitespace-nowrap ${
                   activeProjectFilter === 'systems'
                     ? 'bg-indigo-500/20 text-indigo-300 font-medium'
                     : 'text-zinc-400 hover:text-white'

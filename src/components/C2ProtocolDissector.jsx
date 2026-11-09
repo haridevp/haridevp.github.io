@@ -175,7 +175,7 @@ export default function C2ProtocolDissector() {
       </div>
 
       {/* Dissection Pipeline Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 my-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 my-6">
         {/* Step 1: Operator Intent */}
         <div className="p-4 rounded-xl bg-slate-900/70 border border-white/[0.08] flex flex-col justify-between">
           <div>
