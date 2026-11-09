@@ -6,7 +6,6 @@
 ## ⚡ Offensive Security Labs & Tooling
 * [Enterprise AD Attack Lab](ad/active-directory.md)
 * [Stealth-C2 v1.0 Blueprint](c2/stealth-c2.md)
-* [CipherC2 Research Initiative](c2/cipher-c2.md)
 
 ## 🔬 Systems & AI Research
 * [Autonomous Aerial Navigation (Springer LNNS)](research/autonomous-navigation.md)

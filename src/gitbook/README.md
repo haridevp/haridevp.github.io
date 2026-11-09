@@ -17,7 +17,7 @@ Welcome to my personal offensive security knowledge base. Here you will find det
 | Verification | Detail | Context & Scope |
 | :--- | :--- | :--- |
 | **Research Appointment** | **ASTRA Lab (CyStar), IIT Madras** | Advised by Prof. Narayanaswamy N S & Dr. Jaimandeep Singh (Senior Consultant, ex-MoD) |
-| **Lab Project** | **CipherC2 Initiative** | Modeling adversary Command & Control TTPs aligned with MITRE ATT&CK |
+| **Workshop Speaker** | **DeepTrustxAI (2026)** | Presented technical session on Initial Access Vectors (IAV) & adversary tradecraft |
 | **Peer-Reviewed Research** | **Springer LNNS / Scopus-Indexed** | Corresponding Author: Autonomous Navigation & RL (SCRS CIMA 2026, NIT Puducherry) |
 | **TryHackMe** | **24 Writeups Documented (`ArtemizZ`)** | 24 machine walkthroughs documented; full Advent of Cyber completion |
 | **Hack The Box** | **Level 12 (`Level 12`)** | 13 rooted boxes across Linux and Windows enterprise paths |
@@ -35,7 +35,6 @@ graph TD
 
     Labs --> AD["Enterprise AD Attack Lab"]
     Labs --> C2_S["Stealth-C2 v1.0 Blueprint"]
-    Labs --> C2_C["CipherC2 Lab Modeling"]
 
     Systems --> RES_AERO["Autonomous Aerial Navigation (Springer)"]
     Systems --> RES_KV["Distributed KV Store in Go"]
@@ -52,7 +51,6 @@ graph TD
 Engineering and simulating enterprise attack surfaces and covert communication channels.
 * 👉 [Enterprise Active Directory Attack Lab (4-Machine Kill Chain)](ad/active-directory.md)
 * 👉 [Stealth-C2 v1.0 Blueprint: Discord HTTPS & AES-256-GCM](c2/stealth-c2.md)
-* 👉 [CipherC2 Research Initiative (ASTRA Lab, IIT Madras)](c2/cipher-c2.md)
 
 #### 🔬 Systems & AI Research
 Peer-reviewed computer science publications and systems engineering implementations in Go.
