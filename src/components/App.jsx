@@ -185,6 +185,13 @@ export default function App() {
               <span className="status-dot" />
               <span>Security Research Intern @ ASTRA Lab, IIT Madras</span>
             </div>
+            <a
+              href="#experience"
+              className="status-badge-speaker status-badge-neutral font-mono text-[11px] text-purple-300 border-purple-500/30 bg-purple-500/10 hover:bg-purple-500/20 transition-colors flex items-center gap-1.5 cursor-pointer"
+            >
+              <Mic size={11} className="text-purple-400" />
+              <span>Invited Speaker · DeepTrustxAI 2026</span>
+            </a>
             <div className="status-badge-neutral font-mono text-[11px]">
               Available for Red Team / OffSec Engineering
             </div>
@@ -245,28 +252,55 @@ export default function App() {
             </button>
           </div>
 
-          {/* Telemetry / Proof Bar */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-white/[0.08]">
-            <div className="p-3.5 rounded-lg bg-white/[0.02] border border-white/[0.06]">
+          {/* Telemetry / Proof Bar — Key Credentials & Research Highlights */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 pt-6 border-t border-white/[0.08]">
+            <a
+              href="#experience"
+              className="p-3.5 rounded-lg bg-white/[0.02] hover:bg-white/[0.05] border border-white/[0.06] hover:border-zinc-500/40 transition-all cursor-pointer block group"
+            >
               <div className="text-[11px] font-mono text-zinc-500 uppercase">Research Lab</div>
-              <div className="font-semibold text-sm text-zinc-200 mt-0.5">ASTRA Lab, IITM</div>
-              <div className="text-[11px] text-zinc-500 mt-0.5">CyStar Research</div>
-            </div>
-            <div className="p-3.5 rounded-lg bg-white/[0.02] border border-white/[0.06]">
-              <div className="text-[11px] font-mono text-zinc-500 uppercase">TryHackMe</div>
-              <div className="font-semibold text-sm text-emerald-400 mt-0.5">24 Writeups</div>
-              <div className="text-[11px] text-zinc-500 mt-0.5">Advent of Cyber Series</div>
-            </div>
-            <div className="p-3.5 rounded-lg bg-white/[0.02] border border-white/[0.06]">
-              <div className="text-[11px] font-mono text-zinc-500 uppercase">Hack The Box</div>
-              <div className="font-semibold text-sm text-sky-400 mt-0.5">Level 12</div>
-              <div className="text-[11px] text-zinc-500 mt-0.5">13 Boxes Rooted</div>
-            </div>
-            <div className="p-3.5 rounded-lg bg-white/[0.02] border border-white/[0.06]">
+              <div className="font-semibold text-sm text-zinc-200 mt-0.5 truncate group-hover:text-white transition-colors">ASTRA Lab, IITM</div>
+              <div className="text-[11px] text-zinc-500 mt-0.5 truncate">CyStar Research</div>
+            </a>
+
+            <a
+              href="#experience"
+              className="p-3.5 rounded-lg bg-white/[0.02] hover:bg-purple-500/10 border border-white/[0.06] hover:border-purple-500/30 transition-all cursor-pointer block group"
+            >
+              <div className="text-[11px] font-mono text-zinc-500 uppercase flex items-center gap-1">
+                <Mic size={11} className="text-purple-400 flex-shrink-0" />
+                <span className="truncate">Workshop Speaker</span>
+              </div>
+              <div className="font-semibold text-sm text-purple-300 mt-0.5 truncate group-hover:text-purple-200 transition-colors">DeepTrustxAI '26</div>
+              <div className="text-[11px] text-zinc-400 mt-0.5 truncate">Initial Access Vectors</div>
+            </a>
+
+            <a
+              href="#proof"
+              className="p-3.5 rounded-lg bg-white/[0.02] hover:bg-indigo-500/10 border border-white/[0.06] hover:border-indigo-500/30 transition-all cursor-pointer block group"
+            >
               <div className="text-[11px] font-mono text-zinc-500 uppercase">Publications</div>
-              <div className="font-semibold text-sm text-indigo-300 mt-0.5">Springer LNNS</div>
-              <div className="text-[11px] text-zinc-500 mt-0.5">Scopus-Indexed Author</div>
-            </div>
+              <div className="font-semibold text-sm text-indigo-300 mt-0.5 truncate group-hover:text-indigo-200 transition-colors">Springer LNNS</div>
+              <div className="text-[11px] text-zinc-500 mt-0.5 truncate">Scopus-Indexed Author</div>
+            </a>
+
+            <a
+              href="#writeups"
+              className="p-3.5 rounded-lg bg-white/[0.02] hover:bg-emerald-500/10 border border-white/[0.06] hover:border-emerald-500/30 transition-all cursor-pointer block group"
+            >
+              <div className="text-[11px] font-mono text-zinc-500 uppercase">TryHackMe</div>
+              <div className="font-semibold text-sm text-emerald-400 mt-0.5 truncate group-hover:text-emerald-300 transition-colors">24 Writeups</div>
+              <div className="text-[11px] text-zinc-500 mt-0.5 truncate">Advent of Cyber Series</div>
+            </a>
+
+            <a
+              href="#proof"
+              className="p-3.5 rounded-lg bg-white/[0.02] hover:bg-sky-500/10 border border-white/[0.06] hover:border-sky-500/30 transition-all cursor-pointer block group col-span-2 sm:col-span-1"
+            >
+              <div className="text-[11px] font-mono text-zinc-500 uppercase">Hack The Box</div>
+              <div className="font-semibold text-sm text-sky-400 mt-0.5 truncate group-hover:text-sky-300 transition-colors">Level 12</div>
+              <div className="text-[11px] text-zinc-500 mt-0.5 truncate">13 Boxes Rooted</div>
+            </a>
           </div>
         </div>
       </header>

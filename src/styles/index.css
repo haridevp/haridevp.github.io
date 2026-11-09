@@ -702,6 +702,17 @@ html.light .status-badge-neutral {
   border-color: rgba(0, 0, 0, 0.08);
 }
 
+html.light .status-badge-speaker {
+  background: rgba(147, 51, 234, 0.08) !important;
+  color: #7e22ce !important;
+  border-color: rgba(147, 51, 234, 0.25) !important;
+}
+
+html.light .status-badge-speaker:hover {
+  background: rgba(147, 51, 234, 0.14) !important;
+  color: #6b21a8 !important;
+}
+
 /* Text and border utility adaptations for light theme */
 html.light .text-white {
   color: #090a0f !important;
