@@ -19,6 +19,11 @@ const parseFrontMatter = (content) => {
       const key = line.slice(0, colonIndex).trim();
       let value = line.slice(colonIndex + 1).trim();
       
+      // Strip wrapping quotes if present
+      if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+        value = value.slice(1, -1).trim();
+      }
+
       // Basic type parsing
       if (value === 'true') value = true;
       else if (value === 'false') value = false;

@@ -321,14 +321,15 @@ h1, h2, h3, .font-heading {
   color: #ffffff;
 }
 
-/* Mobile Bottom Navigation Dock */
+/* Mobile Bottom Navigation Dock (strictly mobile, anchored to viewport bottom) */
 .mobile-bottom-dock {
   position: fixed;
   bottom: 16px;
+  bottom: max(16px, env(safe-area-inset-bottom));
   left: 50%;
   transform: translateX(-50%);
   z-index: 45;
-  background: rgba(14, 17, 24, 0.88);
+  background: rgba(14, 17, 24, 0.92);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border-medium);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
@@ -338,6 +339,12 @@ h1, h2, h3, .font-heading {
   align-items: center;
   gap: 4px;
   max-width: 92vw;
+}
+
+@media (min-width: 768px) {
+  .mobile-bottom-dock {
+    display: none !important;
+  }
 }
 
 .dock-item {

@@ -72,7 +72,8 @@ export default function Navbar({ onOpenCommandPalette }) {
   };
 
   return (
-    <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <>
+      <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
         {/* Minimalist Logo / Identity */}
         <a
@@ -187,88 +188,89 @@ export default function Navbar({ onOpenCommandPalette }) {
           </button>
         </div>
       </div>
+    </header>
 
-      {/* Slide-Out Drawer (Mobile & Tablet) */}
-      <div className={`mobile-menu-drawer ${mobileOpen ? 'open' : ''}`}>
-        <div className="flex flex-col gap-3 pt-4">
-          <div className="text-xs font-mono tracking-wider text-zinc-400 uppercase pb-2 border-b border-white/10">
-            Navigation Index
-          </div>
-          {NAV_ITEMS.map(item => {
-            const isActive = activeSection === item.id;
-            return (
-              <button
-                key={item.id}
-                onClick={() => handleNavClick(item.id)}
-                className={`flex items-center justify-between text-left py-2.5 px-3 rounded-lg text-sm font-medium transition-colors cursor-pointer ${
-                  isActive
-                    ? 'text-white bg-white/10 font-semibold'
-                    : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
-                }`}
-              >
-                <span>{item.label}</span>
-                {isActive && <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />}
-              </button>
-            );
-          })}
+    {/* Slide-Out Drawer (Mobile & Tablet) - Outside header to avoid backdrop-filter trapping */}
+    <div className={`mobile-menu-drawer ${mobileOpen ? 'open' : ''}`}>
+      <div className="flex flex-col gap-3 pt-4">
+        <div className="text-xs font-mono tracking-wider text-zinc-400 uppercase pb-2 border-b border-white/10">
+          Navigation Index
         </div>
-
-        <div className="space-y-3 pt-6 border-t border-white/10">
-          <a
-            href={USER_CONFIG.gitbook}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full flex items-center justify-center gap-2 rounded-lg border border-sky-500/30 bg-sky-500/10 py-2.5 text-sm font-medium text-sky-300"
-          >
-            <BookOpen size={15} />
-            <span>Open Haridev's GitBook Space</span>
-            <ExternalLink size={13} />
-          </a>
-
-          <a
-            href="/Resume.pdf"
-            download="Haridev_P_Resume.pdf"
-            className="w-full flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 py-2.5 text-sm font-medium text-zinc-200"
-          >
-            <Download size={15} />
-            <span>Download Resume (PDF)</span>
-          </a>
-
-          <div className="flex items-center justify-center gap-6 pt-2">
-            {SOCIAL_LINKS.map(link => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noreferrer"
-                className="text-zinc-400 hover:text-white transition-colors p-2"
-                aria-label={link.label}
-              >
-                <link.icon size={18} />
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Dynamic Mobile Bottom Dock */}
-      <nav aria-label="Mobile Dock Navigation" className="mobile-bottom-dock md:hidden">
-        {DOCK_ITEMS.map(item => {
-          const Icon = item.icon;
+        {NAV_ITEMS.map(item => {
           const isActive = activeSection === item.id;
           return (
             <button
               key={item.id}
               onClick={() => handleNavClick(item.id)}
-              className={`dock-item cursor-pointer ${isActive ? 'active' : ''}`}
-              aria-label={`Scroll to ${item.label}`}
+              className={`flex items-center justify-between text-left py-2.5 px-3 rounded-lg text-sm font-medium transition-colors cursor-pointer ${
+                isActive
+                  ? 'text-white bg-white/10 font-semibold'
+                  : 'text-zinc-400 hover:text-white hover:bg-white/[0.04]'
+              }`}
             >
-              <Icon size={15} />
-              <span className="mt-0.5">{item.label}</span>
+              <span>{item.label}</span>
+              {isActive && <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />}
             </button>
           );
         })}
-      </nav>
-    </header>
+      </div>
+
+      <div className="space-y-3 pt-6 border-t border-white/10">
+        <a
+          href={USER_CONFIG.gitbook}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full flex items-center justify-center gap-2 rounded-lg border border-sky-500/30 bg-sky-500/10 py-2.5 text-sm font-medium text-sky-300"
+        >
+          <BookOpen size={15} />
+          <span>Open Haridev's GitBook Space</span>
+          <ExternalLink size={13} />
+        </a>
+
+        <a
+          href="/Resume.pdf"
+          download="Haridev_P_Resume.pdf"
+          className="w-full flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 py-2.5 text-sm font-medium text-zinc-200"
+        >
+          <Download size={15} />
+          <span>Download Resume (PDF)</span>
+        </a>
+
+        <div className="flex items-center justify-center gap-6 pt-2">
+          {SOCIAL_LINKS.map(link => (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+              className="text-zinc-400 hover:text-white transition-colors p-2"
+              aria-label={link.label}
+            >
+              <link.icon size={18} />
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    {/* Mobile Bottom Navigation Dock (strictly mobile, anchored to viewport bottom) */}
+    <nav aria-label="Mobile Dock Navigation" className="mobile-bottom-dock">
+      {DOCK_ITEMS.map(item => {
+        const Icon = item.icon;
+        const isActive = activeSection === item.id;
+        return (
+          <button
+            key={item.id}
+            onClick={() => handleNavClick(item.id)}
+            className={`dock-item cursor-pointer ${isActive ? 'active' : ''}`}
+            aria-label={`Scroll to ${item.label}`}
+          >
+            <Icon size={15} />
+            <span className="mt-0.5">{item.label}</span>
+          </button>
+        );
+      })}
+    </nav>
+  </>
   );
 }

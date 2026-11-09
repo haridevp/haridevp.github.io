@@ -230,20 +230,18 @@ export default function App() {
             INTERACTIVE LABS SECTION (Stealth-C2 & Active Directory Lab)
             ========================================================= */}
         <Section id="labs" className="border-b border-white/[0.08]">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
-            <div className="max-w-xl">
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-mono text-sky-400 bg-sky-500/10 border border-sky-500/20 mb-2">
-                <Terminal size={12} />
-                <span>Hands-on Engineering Architecture</span>
-              </div>
-              <h2 className="section-title">Interactive Security Labs</h2>
-              <p className="section-subtitle">
-                Explore the protocol dissection and attack chain simulation of Haridev's offensive security frameworks.
-              </p>
+          <div className="mb-8">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-mono text-sky-400 bg-sky-500/10 border border-sky-500/20 mb-2">
+              <Terminal size={12} />
+              <span>Hands-on Engineering Architecture</span>
             </div>
+            <h2 className="section-title">Interactive Security Labs</h2>
+            <p className="section-subtitle">
+              Explore the protocol dissection and attack chain simulation of Haridev's offensive security frameworks.
+            </p>
 
-            {/* Lab Switcher Buttons */}
-            <div className="flex items-center gap-1.5 p-1 bg-white/[0.04] border border-white/[0.08] rounded-xl self-start sm:self-auto flex-shrink-0">
+            {/* Lab Switcher Buttons (Kept below title/description) */}
+            <div className="inline-flex items-center gap-1.5 p-1 bg-white/[0.04] border border-white/[0.08] rounded-xl mt-4">
               <button
                 type="button"
                 onClick={() => setActiveLabTab('c2')}
@@ -285,16 +283,14 @@ export default function App() {
             SELECTED ENGINEERING PROJECTS
             ========================================================= */}
         <Section id="projects" className="border-b border-white/[0.08]">
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
-            <div className="max-w-xl">
-              <h2 className="section-title">Selected Projects</h2>
-              <p className="section-subtitle">
-                Adversary simulation frameworks, distributed key-value storage in Go, and cryptographic architectures.
-              </p>
-            </div>
+          <div className="mb-8">
+            <h2 className="section-title">Selected Projects</h2>
+            <p className="section-subtitle">
+              Adversary simulation frameworks, distributed key-value storage in Go, and cryptographic architectures.
+            </p>
 
-            {/* Category Filter Pills */}
-            <div className="flex flex-wrap items-center gap-1.5 bg-white/[0.03] p-1 rounded-lg border border-white/[0.06] self-start sm:self-auto flex-shrink-0">
+            {/* Category Filter Pills (Kept below title/description) */}
+            <div className="inline-flex flex-wrap items-center gap-1.5 bg-white/[0.03] p-1 rounded-lg border border-white/[0.06] mt-4">
               <button
                 type="button"
                 onClick={() => setActiveProjectFilter('all')}
